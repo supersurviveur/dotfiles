@@ -37,7 +37,7 @@
 	},
 	"clock": {
 		"interval": 5,
-		"format": "{:%d-%m-%y %H:%M:%S}",
+		"format": "{:%d-%m-%Y %H:%M:%S}",
 		"tooltip": false
 	},
 	"battery": {
@@ -72,12 +72,12 @@
 	},
 	"memory": {
 		"interval": 5,
-		"format": "{used:.1f} Gib/{total:.1f} Gib",
+		"format": "{used:.1f} GiB/{total:.1f} GiB",
 		"tooltip": false
 	},
 	"cpu": {
 		"interval": 5,
-		"format": "cpu {usage:2}%"
+		"format": "cpu {usage:02}%"
 	},
 	"temperature": {
 		"interval": 5,
