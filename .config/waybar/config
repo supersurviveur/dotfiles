@@ -1,0 +1,89 @@
+{
+	"layer": "bottom",
+	"position": "bottom",
+	"height": 30,
+	"modules-left": [
+		"sway/workspaces",
+		"sway/mode"
+	],
+	"modules-right": [
+		"custom/spotify",
+		"custom/separator",
+		"network",
+		"custom/separator",
+		"temperature",
+		"custom/separator",
+		"battery",
+		"custom/separator",
+		"cpu",
+		"custom/separator",
+		"disk",
+		"custom/separator",
+		"memory",
+		"custom/separator",
+		"clock",
+		"tray"
+	],
+	"sway/mode": {
+		"format": "{}"
+	},
+	"sway/workspaces": {
+		"format": "{name}",
+		"disable-scroll": true
+	},
+	"custom/separator": {
+		"format": "|",
+		"tooltip": false
+	},
+	"clock": {
+		"format": "{:%d-%m-%y %H:%M}",
+		"tooltip": false
+	},
+	"battery": {
+		"format": "BAT {capacity}%",
+		"format-alt": "{time}",
+		"format-charging": "CHR {capacity}%",
+		"interval": 5,
+		"states": {
+			"good": 80,
+			"warning": 30,
+			"critical": 15
+		},
+		"tooltip": false
+	},
+	"network": {
+		"interval": 5,
+		"format": "({signalStrength}% at {essid}) {ipaddr}",
+		"on-click": "connman-gtk",
+		"tooltip": false
+	},
+	"custom/spotify": {
+		"interval": 5,
+		"return-type": "json",
+		"exec": "~/.config/waybar/modules/spotify.sh",
+		"exec-if": "pgrep spotify",
+		"escape": true
+	},
+	"disk": {
+		"interval": 5,
+		"format": "{free}",
+		"path": "/"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "{used:.1f} Gib/{total:.1f} Gib",
+		"tooltip": false
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "cpu {usage:2}%"
+	},
+	"temperature": {
+		"interval": 5,
+		"format": "T: {temperatureC}°C",
+		"tooltip": false
+	},
+	"tray": {
+		"icon-size": 18
+	}
+}

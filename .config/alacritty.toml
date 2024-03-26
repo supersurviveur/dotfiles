@@ -1,0 +1,66 @@
+# Default colors
+[colors.primary]
+# background = '#0f0e0f'
+background = "#000000"
+bright_foreground = "#ffffff"
+dim_foreground = "#dddddd"
+foreground = '#fff1f3'
+
+  # Normal colors
+[colors.normal]
+black =  '#2c2525'
+red =    '#fd6883'
+green =  '#adda78'
+yellow = '#f9cc6c'
+blue =   '#f38d70'
+magenta ='#a8a9eb'
+cyan =   '#85dacc'
+white =  '#fff1f3'
+
+  # Bright colors
+[colors.bright]
+black =  '#72696a'
+red =    '#fd6883'
+green =  '#adda78'
+yellow = '#f9cc6c'
+blue =   '#f38d70'
+magenta ='#a8a9eb'
+cyan =   '#85dacc'
+white =  '#fff1f3'
+# [colors.bright]
+# black = "#666666"
+# blue = "#7aa6da"
+# cyan = "#70c0b1"
+# green = "#b9ca4a"
+# magenta = "#c397d8"
+# red = "#d54e53"
+# white = "#eaeaea"
+# yellow = "#e7c547"
+
+# [colors.normal]
+# black = "#151515"
+# blue = "#81a2be"
+# cyan = "#8abeb7"
+# green = "#b5bd68"
+# magenta = "#b294bb"
+# red = "#cc6666"
+# white = "#efefef"
+# yellow = "#f0c674"
+
+# [colors.primary]
+# background = "#000000"
+# bright_foreground = "#ffffff"
+# dim_foreground = "#dddddd"
+# foreground = "#eeeeee"
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "MesloLGS NF"
+
+[scrolling]
+history = 1000
+
+[window]
+opacity = 0.75

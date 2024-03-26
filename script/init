@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Start other processus
+/usr/lib/xdg-desktop-portal-wlr&
+pipewire&
+pipewire-pulse&
+wireplumber&
+asus-numpad& # asus numpad in touchpad
+rclone mount googleDrive:/ ~/googleDrive& # Google drive
+#rfkill unblock bluetooth # Unblock soft-bluetooth
