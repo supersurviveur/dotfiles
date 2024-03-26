@@ -36,7 +36,8 @@
 		"tooltip": false
 	},
 	"clock": {
-		"format": "{:%d-%m-%y %H:%M}",
+		"interval": 5,
+		"format": "{:%d-%m-%y %H:%M:%S}",
 		"tooltip": false
 	},
 	"battery": {

@@ -54,11 +54,12 @@ window#waybar.solo {
 }
 
 #custom-separator {
-	color: rgba(217, 216, 216, 0.75);
+	color: rgba(217, 216, 216, 0.5);
+	font-weight: bold;
 }
 
 #clock {
-	margin: 0px 10px 0px 0px;
+	margin: 0px 10px 0px 5px;
 	font-weight: bold;
 }
 
