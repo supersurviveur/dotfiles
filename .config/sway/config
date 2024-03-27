@@ -23,9 +23,9 @@ set $menu xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output HDMI-A-1 bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
-output DP-1 bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
-# output * bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
+# output HDMI-A-1 bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
+# output DP-1 bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
+output * bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
 #output * bg #000000 solid_color
 #
 # Example configuration:
@@ -246,5 +246,8 @@ client.focused_inactive #828182 #727072 #FFFFFF #FFFFFF #727072
 client.urgent           #ff7899 #ff6188 #FFFFFF #FFFFFF #ff6188
 
 include /etc/sway/config.d/*
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 exec /home/julien/script/init
