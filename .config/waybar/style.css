@@ -63,14 +63,22 @@ window {
 	margin: 0px 5px 0px 0px;
 }
 
+#cpu.warning {
+	color: #FFD866;
+}
+
+#cpu.critical, #temperature.critical {
+	color: #FF6188;
+}
+
 #battery.warning {
-	color: rgba(255, 210, 4, 1);
+	color: #FFD866;
 }
 
 #battery.critical {
-	color: rgba(238, 46, 36, 1);
+	color: #FF6188;
 }
 
 #battery.charging {
-	color: rgba(217, 216, 216, 1);
+	color: #03767f;
 }

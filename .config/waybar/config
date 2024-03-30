@@ -78,12 +78,17 @@
 	},
 	"cpu": {
 		"interval": 5,
-		"format": "cpu {usage:02}%"
+		"format": "cpu {usage:02}%",
+		"states": {
+			"warning": 80,
+			"critical": 95
+		}
 	},
 	"temperature": {
 		"interval": 5,
 		"format": "T: {temperatureC}°C",
-		"tooltip": false
+		"tooltip": false,
+		"critical-threshold": 90
 	},
 	"tray": {
 		"icon-size": 18
