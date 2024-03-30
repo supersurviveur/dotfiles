@@ -53,6 +53,7 @@
 		"tooltip": false
 	},
 	"network": {
+		"interface": "wlan0",
 		"interval": 5,
 		"format": "({signalStrength}% at {essid}) {ipaddr}",
 		"on-click": "connman-gtk",
