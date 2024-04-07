@@ -8,8 +8,9 @@
 	],
 	"modules-right": [
 		"custom/spotify",
-		"custom/separator",
 		"network",
+		"custom/separator",
+		"pulseaudio",
 		"custom/separator",
 		"temperature",
 		"custom/separator",
@@ -56,15 +57,25 @@
 		"interface": "wlan0",
 		"interval": 5,
 		"format": "({signalStrength}% at {essid}) {ipaddr}",
-		"on-click": "connman-gtk",
+		"format-disconnected": "NO CONNECTION",
+		"on-click": "process=$(pidof connman-gtk) ; if [[ -z $process ]]; then connman-gtk& else swaymsg '[app_id=connman-gtk]' focus; fi",
+		"tooltip": false
+	},
+	"pulseaudio": {
+		"format": "VOL {volume}%",
+		"format-muted": "MUTE",
+		"scroll-step": 1,
+		"on-click": "process=$(pidof pavucontrol) ; if [[ -z $process ]]; then pavucontrol& else swaymsg '[app_id=pavucontrol]' focus; fi",
 		"tooltip": false
 	},
 	"custom/spotify": {
+		"format": "{} <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
 		"interval": 5,
 		"return-type": "json",
 		"exec": "~/.config/waybar/modules/spotify.sh",
 		"exec-if": "pgrep spotify",
-		"escape": true
+		"escape": true,
+		"on-click": "swaymsg '[class=Spotify]' focus"
 	},
 	"disk": {
 		"interval": 5,
@@ -74,7 +85,8 @@
 	"memory": {
 		"interval": 5,
 		"format": "{used:.1f} GiB/{total:.1f} GiB",
-		"tooltip": false
+		"tooltip": false,
+		"on-click": "exec alacritty -e htop"
 	},
 	"cpu": {
 		"interval": 5,
@@ -82,13 +94,15 @@
 		"states": {
 			"warning": 80,
 			"critical": 95
-		}
+		},
+		"on-click": "exec alacritty -e htop"
 	},
 	"temperature": {
 		"interval": 5,
 		"format": "T: {temperatureC}°C",
 		"tooltip": false,
-		"critical-threshold": 90
+		"critical-threshold": 90,
+		"on-click": "exec alacritty -e htop"
 	},
 	"tray": {
 		"icon-size": 18

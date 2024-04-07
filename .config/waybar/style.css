@@ -44,12 +44,15 @@ window {
 #memory,
 #network,
 #pulseaudio,
-#disk,
-#custom-spotify {
+#disk {
 	margin: 0px 6px 0px 5px;
 }
 
-#custom-separator {
+#custom-spotify {
+	margin: 0px 0px 0px 5px;
+}
+
+#custom-separator, #custom-separator2 {
 	color: rgba(217, 216, 216, 0.5);
 	font-weight: bold;
 }
