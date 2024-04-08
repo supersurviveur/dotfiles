@@ -10,7 +10,6 @@
 
 window {
 	color: rgba(217, 216, 216, 1);
-	/* background: #292b2e; */
 	background: rgb(25, 24, 26);
 }
 
@@ -29,7 +28,7 @@ window {
 
 #workspaces button.focused {
 	border-top: 3px solid rgba(217, 216, 216, 1);
-	border-bottom: 3px solid rgba(217, 216, 216, 0);
+	border-bottom: 3px solid transparent;
 	color: #fc9867;
 }
 
@@ -66,16 +65,12 @@ window {
 	margin: 0px 5px 0px 0px;
 }
 
-#cpu.warning {
+#cpu.warning, #battery.warning {
 	color: #FFD866;
 }
 
 #cpu.critical, #temperature.critical {
 	color: #FF6188;
-}
-
-#battery.warning {
-	color: #FFD866;
 }
 
 #battery.critical {
