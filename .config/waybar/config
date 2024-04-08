@@ -86,7 +86,7 @@
 		"interval": 5,
 		"format": "{used:.1f} GiB/{total:.1f} GiB",
 		"tooltip": false,
-		"on-click": "exec alacritty -e htop"
+		"on-click": "process=$(pidof htop) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - htop' -e htop& else swaymsg '[title=\"Alacritty - htop\"]' focus; fi"
 	},
 	"cpu": {
 		"interval": 5,
@@ -95,14 +95,14 @@
 			"warning": 80,
 			"critical": 95
 		},
-		"on-click": "exec alacritty -e htop"
+		"on-click": "process=$(pidof htop) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - htop' -e htop& else swaymsg '[title=\"Alacritty - htop\"]' focus; fi"
 	},
 	"temperature": {
 		"interval": 5,
 		"format": "T: {temperatureC}°C",
 		"tooltip": false,
 		"critical-threshold": 90,
-		"on-click": "exec alacritty -e htop"
+		"on-click": "process=$(pidof watch sensors) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - sensors' -e watch sensors& else swaymsg '[title=\"Alacritty - sensors\"]' focus; fi"
 	},
 	"tray": {
 		"icon-size": 18
