@@ -106,6 +106,7 @@
 		"on-click": "process=$(pidof watch sensors) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - sensors' -e watch sensors& else swaymsg '[title=\"Alacritty - sensors\"]' focus; fi"
 	},
 	"tray": {
-		"icon-size": 18
+		"icon-size": 18,
+		"spacing": 5
 	}
 }
