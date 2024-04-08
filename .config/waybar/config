@@ -45,6 +45,7 @@
 		"format": "BAT {capacity}%",
 		"format-alt": "{time}",
 		"format-charging": "CHR {capacity}%",
+		"format-full": "FULL",
 		"interval": 5,
 		"states": {
 			"good": 80,

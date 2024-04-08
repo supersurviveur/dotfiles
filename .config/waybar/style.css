@@ -52,7 +52,7 @@ window {
 	margin: 0px 0px 0px 5px;
 }
 
-#custom-separator, #custom-separator2 {
+#custom-separator {
 	color: rgba(217, 216, 216, 0.5);
 	font-weight: bold;
 }
@@ -82,6 +82,6 @@ window {
 	color: #FF6188;
 }
 
-#battery.charging {
+#battery.charging, #battery.full {
 	color: #03767f;
 }
