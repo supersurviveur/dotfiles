@@ -47,7 +47,7 @@
 		"format-alt": "{time}",
 		"format-charging": "CHR {capacity}%",
 		"format-full": "FULL",
-		"interval": 5,
+		"interval": 15,
 		"states": {
 			"good": 80,
 			"warning": 30,
@@ -92,7 +92,7 @@
 		"path": "/"
 	},
 	"memory": {
-		"interval": 5,
+		"interval": 10,
 		"format": "{used:.1f} GiB/{total:.1f} GiB",
 		"tooltip": false,
 		"on-click": "process=$(pidof htop) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - htop' -e htop& else swaymsg '[title=\"Alacritty - htop\"]' focus; fi"
