@@ -241,9 +241,9 @@ bar swaybar_command waybar
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          #058e99 #03767f #FFFFFF #FFFFFF #03767f
-client.focused_inactive #828182 #727072 #FFFFFF #FFFFFF #727072
-client.urgent           #ff7899 #ff6188 #FFFFFF #FFFFFF #ff6188
+client.focused          #058e99 #03767f #FFFFFF #03767f #03767f
+client.focused_inactive #828182 #727072 #FFFFFF #727072 #727072
+client.urgent           #ff7899 #ff6188 #FFFFFF #ff6188 #ff6188
 
 include /etc/sway/config.d/*
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
