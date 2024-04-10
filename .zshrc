@@ -68,6 +68,7 @@ bindkey '\e[1;5A' sudo-previous
 
 # alias
 alias sway="~/script/init-sway"
+alias ls="eza --icons"
 
 #env
 export XKB_DEFAULT_LAYOUT=fr
