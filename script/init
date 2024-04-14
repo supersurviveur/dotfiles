@@ -4,7 +4,9 @@
 pipewire&
 pipewire-pulse&
 wireplumber&
-asus-numpad& # asus numpad in touchpad
 rclone mount googleDrive:/ ~/googleDrive& # Google drive
-#rfkill unblock bluetooth # Unblock soft-bluetooth
 keepassxc&
+
+# Per computer processus
+asus-numpad& # asus numpad in touchpad
+#rfkill unblock bluetooth # Unblock soft-bluetooth

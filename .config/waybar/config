@@ -63,18 +63,21 @@
 		"on-click": "process=$(pidof connman-gtk) ; if [[ -z $process ]]; then connman-gtk& else swaymsg '[app_id=connman-gtk]' focus; fi",
 		"tooltip": false
 	},
-	"bluetooth": {
-		"format": "",
-		"format-on": "\uf293",
-		"format-connected": "\uf293 {device_alias} {device_battery_percentage}%",
-		"on-click": "process=$(pgrep blueman-manager) ; if [[ -z $process ]]; then blueman-manager& else swaymsg '[app_id=blueman-manager]' focus; fi",
-		"tooltip": false
-	},
 	"pulseaudio": {
 		"format": "VOL {volume}%",
 		"format-muted": "MUTE",
 		"scroll-step": 1,
 		"on-click": "process=$(pidof pavucontrol) ; if [[ -z $process ]]; then pavucontrol& else swaymsg '[app_id=pavucontrol]' focus; fi",
+		"on-click-right": "bluetoothctl power on",
+		"tooltip": false
+	},
+	"bluetooth": {
+		"format": "",
+		"format-on": "\uf293",
+		"format-connected": "\uf293 {device_alias}",
+		"format-connected-battery": "\uf293 {device_alias} {device_battery_percentage}%",
+		"on-click": "exec alacritty -T 'Alacritty - bluetoothctl' -e bluetoothctl&",
+		"on-click-right": "bluetoothctl power off",
 		"tooltip": false
 	},
 	"custom/spotify": {
