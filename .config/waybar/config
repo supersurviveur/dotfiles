@@ -68,7 +68,7 @@
 		"format-muted": "MUTE",
 		"scroll-step": 1,
 		"on-click": "process=$(pidof pavucontrol) ; if [[ -z $process ]]; then pavucontrol& else swaymsg '[app_id=pavucontrol]' focus; fi",
-		"on-click-right": "bluetoothctl power on",
+		"on-click-right": "if [[ $(bluetoothctl show | grep PowerState | cut -c14-) = 'on' ]]; then bluetoothctl power off; else bluetoothctl power on; fi",
 		"tooltip": false
 	},
 	"bluetooth": {
@@ -77,7 +77,7 @@
 		"format-connected": "\uf293 {device_alias}",
 		"format-connected-battery": "\uf293 {device_alias} {device_battery_percentage}%",
 		"on-click": "exec alacritty -T 'Alacritty - bluetoothctl' -e bluetoothctl&",
-		"on-click-right": "bluetoothctl power off",
+		"on-click-right": "if [[ $(bluetoothctl show | grep PowerState | cut -c14-) = 'on' ]]; then bluetoothctl power off; else bluetoothctl power on; fi",
 		"tooltip": false
 	},
 	"custom/spotify": {
