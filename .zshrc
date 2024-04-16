@@ -1,4 +1,4 @@
-stty -ixon
+stty -ixon # Important, enable keys like ctrl+S
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -72,7 +72,7 @@ alias ls="eza --icons"
 
 #env
 export XKB_DEFAULT_LAYOUT=fr
-# export PROMPT='%(!.%F{red}.%F{green})[%F{cyan}%5~%(?.. %F{red}%?)%(!.%F{red}.%F{green})]%f%(!.%F{red}#.%F{green}>)%f'
+export PROMPT='%(!.%F{red}.%F{green})[%F{cyan}%5~%(?.. %F{red}%?)%(!.%F{red}.%F{green})]%f%(!.%F{red}#.%F{green}>)%f'
 #wayland
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_DBUS_REMOTE=1
@@ -86,11 +86,13 @@ export GDK_BACKEND=wayland
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 
 # opam configuration
 [[ ! -r /home/julien/.opam/opam-init/init.zsh ]] || source /home/julien/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 eval $(opam env)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ $TERM = "alacritty" ]]; then # Load modules only in alacritty, not in TTY
+	source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
