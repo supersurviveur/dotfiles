@@ -3,3 +3,10 @@ export XDG_CURRENT_DESKTOP=sway
 
 # Start sway
 dbus-run-session sway -Vd
+
+# Stop audio service
+killall wireplumber pipewire pipewire-pulse
+# Stop keepassXC
+killall keepassxc
+# Stop asus-numpad
+killall asus-numpad

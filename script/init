@@ -1,12 +1,22 @@
 #!/bin/sh
 
+# Start a processus only if it isn't already running
+# start_once () {
+#     process=$(pidof $1); # Check if the processus is already started
+#     if [[ -z $process ]];
+#     then
+#         $1& # Start the processus
+#     fi
+# }
+
 # Start other processus
 pipewire&
 pipewire-pulse&
 wireplumber&
-rclone mount googleDrive:/ ~/googleDrive& # Google drive
 keepassxc&
+rclone mount googleDrive:/ ~/googleDrive& # Google drive
 
 # Per computer processus
 asus-numpad& # asus numpad in touchpad
-#rfkill unblock bluetooth # Unblock soft-bluetooth
+rfkill unblock bluetooth # Unblock soft-bluetooth
+bluetoothctl power off # power off bluetooth at startup
