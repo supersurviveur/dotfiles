@@ -1,0 +1,10 @@
+#!/sbin/openrc-run
+# Copyright 2021 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="custom-asus-numpad"
+description="Custom service to launch asus-numpad (Driver for the asus numpad in the touchpad)"
+command="asus-numpad"
+command_args="${service_args}"
+command_background=true
+pidfile="/run/${RC_SVCNAME}.pid"

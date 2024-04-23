@@ -14,10 +14,8 @@ pipewire&
 pipewire-pulse&
 wireplumber&
 keepassxc&
-rclone mount googleDrive:/ ~/googleDrive& # Google drive
 
 # Per computer processus
 gammastep& # Blue light reducer
-asus-numpad& # asus numpad in touchpad
 rfkill unblock bluetooth # Unblock soft-bluetooth
 bluetoothctl power off # power off bluetooth at startup

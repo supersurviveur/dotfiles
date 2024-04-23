@@ -8,7 +8,5 @@ dbus-run-session sway -Vd
 killall wireplumber pipewire pipewire-pulse
 # Stop keepassXC
 killall keepassxc
-# Stop asus-numpad
-killall asus-numpad
 # Stop gammastep
 killall gammastep

@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+# Copyright 2021 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="custom-rclone"
+description="Custom service to launch rclone (Mount drive on the disk)"
+command="rclone"
+command_args="mount googleDrive:/ /home/julien/googleDrive ${service_args}"
+command_user="julien:julien"
+command_background=true
+pidfile="/run/${RC_SVCNAME}.pid"
