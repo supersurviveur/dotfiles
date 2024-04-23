@@ -10,3 +10,5 @@ killall wireplumber pipewire pipewire-pulse
 killall keepassxc
 # Stop asus-numpad
 killall asus-numpad
+# Stop gammastep
+killall gammastep
