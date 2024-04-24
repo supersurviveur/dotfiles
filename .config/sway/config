@@ -52,7 +52,7 @@ output * bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
 input type:keyboard {
     xkb_layout "fr"
 #    xkb_variant "latin9"
-    xkb_numlock enabled
+    # xkb_numlock enabled
 }
 input type:pointer {
    pointer_accel 0.6
