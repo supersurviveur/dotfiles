@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Stop keepassXC
+keepassxc --lock
+killall keepassxc
+# Stop gammastep
+killall gammastep

@@ -10,12 +10,8 @@
 # }
 
 # Start other processus
-pipewire&
-pipewire-pulse&
-wireplumber&
 keepassxc&
 
 # Per computer processus
 gammastep& # Blue light reducer
-rfkill unblock bluetooth # Unblock soft-bluetooth
 bluetoothctl power off # power off bluetooth at startup
