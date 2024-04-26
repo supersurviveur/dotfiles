@@ -36,7 +36,7 @@ cp .zshenv ~/
 # Per computer config
 cp .config/waybar ~/.config -r
 if askN "Add a custom temperature?"; then
-    sed -i '/"temperature": {/a \\t\t"TODO": "TODO",' ~/.config/waybar/config
+    sed -i '/"temperature": {/a \\t\t"hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",' ~/.config/waybar/config
 fi
 
 if ask "Use gammastep?"; then
@@ -49,6 +49,8 @@ fi
 cd services
 if ask "Use asus-numpad?"; then
     SERVICES_ARGS=asus-numpad
+else
+    sed -i '/input type:keyboard {/a \ \ \ \ xkb_numlock enabled' ~/.config/sway/config
 fi
 ./install-services.sh $SERVICES_ARGS
 cd ..
