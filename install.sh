@@ -27,12 +27,12 @@ askN() {
 cp .config/sway ~/.config -r
 cp .config/zathura ~/.config -r
 cp .config/alacritty.toml ~/.config
+cp .ssh ~/ -r
 cp script/{augment_lum.sh,dim_lum.sh,init-sway,exit-sway,init} ~/script
 cp .p10k.zsh ~/
 cp .zprofile ~/
 cp .zshrc ~/
 cp .zshenv ~/
-cp .ssh ~/
 
 # Per computer config
 cp .config/waybar ~/.config -r
