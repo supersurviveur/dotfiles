@@ -32,6 +32,7 @@ cp .p10k.zsh ~/
 cp .zprofile ~/
 cp .zshrc ~/
 cp .zshenv ~/
+cp .ssh ~/
 
 # Per computer config
 cp .config/waybar ~/.config -r
