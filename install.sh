@@ -47,6 +47,10 @@ else
     sed -i '/gammastep/d' ~/script/exit-sway
 fi
 
+if ! ask "Do you have a battey?"; then
+    sed -i '/"battery",/,/^/d' ~/.config/waybar/config
+fi
+
 cd services
 if ask "Use asus-numpad?"; then
     SERVICES_ARGS=asus-numpad
