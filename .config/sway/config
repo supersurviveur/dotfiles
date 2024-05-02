@@ -50,7 +50,8 @@ output * bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
 ### Input configuration
 #
 input type:keyboard {
-    xkb_layout "fr"
+    xkb_layout "fr,fr"
+    xkb_variant "latin9,bepo"
     # 
 }
 input type:pointer {
@@ -63,7 +64,7 @@ input type:touchpad {
    pointer_accel 0.8
 }
 
-
+    bindsym $mod+Control+space input * xkb_switch_layout next
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
