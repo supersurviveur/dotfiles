@@ -38,7 +38,7 @@
 		"tooltip": false
 	},
 	"clock": {
-		"interval": 5,
+		"interval": 1,
 		"format": "{:%d-%m-%Y %H:%M:%S}",
 		"tooltip": false
 	},
@@ -90,12 +90,12 @@
 		"on-click": "swaymsg '[class=Spotify]' focus"
 	},
 	"disk": {
-		"interval": 5,
+		"interval": 30,
 		"format": "{free}",
 		"path": "/"
 	},
 	"memory": {
-		"interval": 10,
+		"interval": 5,
 		"format": "{used:.1f} GiB/{total:.1f} GiB",
 		"tooltip": false,
 		"on-click": "process=$(pidof htop) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - htop' -e htop& else swaymsg '[title=\"Alacritty - htop\"]' focus; fi"
@@ -110,7 +110,7 @@
 		"on-click": "process=$(pidof htop) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - htop' -e htop& else swaymsg '[title=\"Alacritty - htop\"]' focus; fi"
 	},
 	"temperature": {
-		"interval": 5,
+		"interval": 10,
 		"format": "T: {temperatureC}°C",
 		"tooltip": false,
 		"critical-threshold": 90,
