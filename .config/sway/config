@@ -58,7 +58,7 @@ input type:keyboard {
     # 
 }
 input type:pointer {
-   pointer_accel 0.6
+   pointer_accel 0.5
  #   sensitivity 2.5
 }
 input type:touchpad {
