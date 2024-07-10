@@ -38,7 +38,7 @@
 		"tooltip": false
 	},
 	"clock": {
-		"interval": 1,
+		"interval": 5,
 		"format": "{:%d-%m-%Y %H:%M:%S}",
 		"tooltip": false
 	},
@@ -57,7 +57,7 @@
 	},
 	"network": {
 		"interface": "wlan0",
-		"interval": 5,
+		"interval": 15,
 		"format": "({signalStrength}% at {essid}) {ipaddr}",
 		"format-disconnected": "NO CONNECTION",
 		"on-click": "process=$(pidof connman-gtk) ; if [[ -z $process ]]; then connman-gtk& else swaymsg '[app_id=connman-gtk]' focus; fi",
@@ -82,7 +82,7 @@
 	},
 	"custom/spotify": {
 		"format": "{} <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
-		"interval": 5,
+		"interval": 10,
 		"return-type": "json",
 		"exec": "~/.config/waybar/modules/spotify.sh",
 		"exec-if": "pgrep spotify",
@@ -95,7 +95,7 @@
 		"path": "/"
 	},
 	"memory": {
-		"interval": 5,
+		"interval": 15,
 		"format": "{used:.1f} GiB/{total:.1f} GiB",
 		"tooltip": false,
 		"on-click": "process=$(pidof htop) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - htop' -e htop& else swaymsg '[title=\"Alacritty - htop\"]' focus; fi"
