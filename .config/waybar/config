@@ -60,7 +60,7 @@
 		"interval": 15,
 		"format": "({signalStrength}% at {essid}) {ipaddr}",
 		"format-disconnected": "NO CONNECTION",
-		"on-click": "process=$(pidof connman-gtk) ; if [[ -z $process ]]; then connman-gtk& else swaymsg '[app_id=connman-gtk]' focus; fi",
+		"on-click": "process=$(pidof impala) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - impala' -e impala& else swaymsg '[title=\"Alacritty - impala\"]' focus; fi",
 		"tooltip": false
 	},
 	"pulseaudio": {
@@ -91,6 +91,7 @@
 	},
 	"disk": {
 		"interval": 30,
+		"tooltip": false,
 		"format": "{free}",
 		"path": "/"
 	},
@@ -102,6 +103,7 @@
 	},
 	"cpu": {
 		"interval": 5,
+		"tooltip": false,
 		"format": "cpu {usage:02}%",
 		"states": {
 			"warning": 80,

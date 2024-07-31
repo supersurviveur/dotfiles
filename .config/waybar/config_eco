@@ -1,0 +1,43 @@
+{
+	"layer": "bottom",
+	"position": "bottom",
+	"height": 30,
+	"modules-left": [
+		"sway/workspaces",
+		"sway/mode"
+	],
+	"modules-right": [
+		"battery",
+		"custom/separator",
+		"clock"
+	],
+	"sway/mode": {
+		"format": "{}"
+	},
+	"sway/workspaces": {
+		"format": "{name}",
+		"disable-scroll": true
+	},
+	"custom/separator": {
+		"format": "|",
+		"tooltip": false
+	},
+	"clock": {
+		"interval": 60,
+		"format": "{:%d-%m-%Y %H:%M:%S}",
+		"tooltip": false
+	},
+	"battery": {
+		"format": "BAT {capacity}%",
+		"format-alt": "{time}",
+		"format-charging": "CHR {capacity}%",
+		"format-full": "FULL",
+		"interval": 120,
+		"states": {
+			"good": 80,
+			"warning": 30,
+			"critical": 15
+		},
+		"tooltip": false
+	}
+}
