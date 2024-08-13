@@ -84,6 +84,7 @@ input type:touchpad {
 #
     # Start a terminal
     $bindsym $mod+Return exec $term
+    $bindsym $mod+Shift+Return exec $term --working-directory $(~/script/getSwayCwd.sh)
 
     # Kill focused window
     $bindsym $mod+Shift+q kill
