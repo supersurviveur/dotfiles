@@ -1,0 +1,84 @@
+[language-server]
+emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+format = { enable = true }
+nodePath = ""
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+experimental = {}
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint.config.codeAction]
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = true }
+
+[language-server.eslint.config.workingDirectory]
+mode = "location"
+
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+[language-server.cssmodules]
+command = "cssmodules-language-server"
+args = []
+
+[language-server.rust-analyzer]
+config = { cargo = { features = "all" } }
+
+[language-server.gpt]
+command = "helix-gpt"
+args = ["--handler", "copilot", "--copilotApiKey", "KEY_HERE"]
+
+[[language]]
+name = "typescript"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+
+[[language]]
+name = "tsx"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "typescript-language-server", "eslint", "cssmodules", "emmet-ls" ]
+# auto-format = true
+
+[[language]]
+name = "rust"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "rustfmt" }
+auto-format = false
+
+[[language]]
+name = "scss"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "vscode-css-language-server", "cssmodules" ]
+auto-format = true
+
+[[grammar]]
+name = "scss"
+# source = { path = "/home/julien/code/tree-sitter-scss" }
+source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-scss", rev = "8f47fa8be72ac299cab4c6aa02668635f2dcd4be" }
+
+[[language]]
+name = "toml"
+language-servers = [
+  "gpt",
+]
+
+[[language]]
+name = "ocaml"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "ocamlformat", args=["-", "--impl", "--enable-outside-detected-project"] }

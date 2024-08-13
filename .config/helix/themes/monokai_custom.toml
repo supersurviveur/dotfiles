@@ -1,0 +1,32 @@
+inherits = "monokai_pro"
+
+"constant"  = "purple"
+"variable.builtin" = "base8"
+"constant.builtin" = "purple"
+"constant.character.escape" = "purple"
+"constant.character" = "yellow"
+
+# classes, types, primitives
+"type" = "blue"
+"type.builtin" = "blue"
+
+"punctuation.embedded.jsx" = "orange"
+
+# Custom
+"tag" = "red"
+"attribute.jsx" = { fg = "blue", modifiers = ["italic"] }
+"ui.virtual.indent-guide" = "base3"
+"ui.statusline.select" = { fg = "base4", bg = "red" }
+"ui.statusline.separator" = "base6"
+
+"variable.scss" = { fg = "orange", modifiers = ["italic"] }
+"variable.scss.ident" = "green"
+
+"classname" = { fg = "green", modifiers = ["italic"] }
+"idname" = { fg = "orange", modifiers = ["italic"] }
+"punctuation.italic" = { fg = "base6", modifiers = ["italic"] }
+
+"string.delimiter" = "base6"
+"punctuation.delimiter.rust" = "red"
+
+"variable.builtin.self" = { fg = "base7", modifiers = ["italic"] }
