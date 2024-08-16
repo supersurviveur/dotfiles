@@ -1,3 +1,5 @@
+use-grammars = { only = [ "rust", "c", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst" ] }
+
 [language-server]
 emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
 
@@ -82,3 +84,8 @@ language-servers = [
 name = "ocaml"
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = "ocamlformat", args=["-", "--impl", "--enable-outside-detected-project"] }
+
+
+[[language]]
+name = "markdown"
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}

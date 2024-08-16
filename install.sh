@@ -29,12 +29,16 @@ cp .config/zathura ~/.config -r
 cp .config/dooit ~/.config -r
 cp .config/helix ~/.config -r
 cp .config/alacritty.toml ~/.config
+cp .config/code-flags.conf ~/.config
 cp .ssh ~/ -r
+cp wallpaper ~/ -r
 cp script/{augment_lum.sh,dim_lum.sh,init-sway,exit-sway,init,eco.sh,eco+.sh} ~/script
 cp .p10k.zsh ~/
+cp .profile ~/
 cp .zprofile ~/
 cp .zshrc ~/
 cp .zshenv ~/
+cp .dprint.json ~/
 
 # Per computer config
 cp .config/waybar ~/.config -r
