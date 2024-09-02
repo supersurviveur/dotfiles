@@ -58,8 +58,8 @@ input type:keyboard {
     # 
 }
 input type:pointer {
-   pointer_accel 0.5
- #   sensitivity 2.5
+   pointer_accel 0.1
+#   sensitivity 2.5
 }
 input type:touchpad {
    natural_scroll enabled
@@ -139,7 +139,7 @@ input type:touchpad {
     $bindsym $mod+eacute workspace number 2
     $bindsym $mod+quotedbl workspace number 3
     $bindsym $mod+apostrophe workspace number 4
-    $bindsym $mod+parenleft workspace number 5
+    bindcode $mod+14 workspace number 5
     $bindsym $mod+minus workspace number 6
     $bindsym $mod+egrave workspace number 7
     $bindsym $mod+underscore workspace number 8
@@ -238,6 +238,10 @@ $bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 # capture d'écran
 $bindsym S+Shift_L+Mod2+XF86SelectiveScreenshot exec grimshot copy area
 $bindsym Shift+S+$mod exec grimshot copy area
+# $bindsym Super_L exec loginctl suspend
+# Bind gestures for navigation
+bindgesture swipe:3:right workspace prev
+bindgesture swipe:3:left workspace next
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
