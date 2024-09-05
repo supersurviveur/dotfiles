@@ -1,4 +1,4 @@
-use-grammars = { only = [ "rust", "c", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst" ] }
+use-grammars = { only = [ "rust", "c", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst", "bash", "sway", "sql", "json", "make" ] }
 
 [language-server]
 emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}

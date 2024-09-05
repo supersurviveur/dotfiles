@@ -69,6 +69,11 @@ bindkey '\e[1;5A' sudo-previous
 # alias
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
+hx () {
+	[[ $TERM == "alacritty" ]] && echo "\e]2;Helix"
+	/usr/bin/hx $@
+	[[ $TERM == "alacritty" ]] && echo "\e]2;Alacritty"
+}
 
 #env
 export XKB_DEFAULT_LAYOUT=fr
