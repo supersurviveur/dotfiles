@@ -228,13 +228,18 @@ mode "passtrough" {
 $bindsym $mod+Escape mode "passtrough"
 $bindsym $mod+Pause mode "passtrough"
 
-#luminosité
+# Luminosité
 $bindsym XF86MonBrightnessUp exec /home/julien/script/augment_lum.sh 10
 $bindsym XF86MonBrightnessDown exec /home/julien/script/dim_lum.sh 10
-#volume
+# Volume
 $bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 $bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 $bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+$bindsym XF86AudioPlay exec playerctl play-pause
+$bindsym XF86AudioStop exec playerctl stop
+$bindsym XF86AudioNext exec playerctl next
+$bindsym XF86AudioPrev exec playerctl previous
+
 # capture d'écran
 $bindsym S+Shift_L+Mod2+XF86SelectiveScreenshot exec grimshot copy area
 $bindsym Shift+S+$mod exec grimshot copy area
@@ -242,13 +247,11 @@ $bindsym Shift+S+$mod exec grimshot copy area
 # Bind gestures for navigation
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
+
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar swaybar_command waybar
-# bar {
-#     status_command i3status
-# }
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
