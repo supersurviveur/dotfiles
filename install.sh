@@ -82,7 +82,6 @@ fi
 # Global config
 cp .config/sway ~/.config -r
 cp .config/zathura ~/.config -r
-cp .config/dooit ~/.config -r
 cp .config/helix ~/.config -r
 cp .config/alacritty.toml ~/.config
 cp .config/code-flags.conf ~/.config
@@ -100,6 +99,11 @@ cp .dprint.json ~/
 cp .config/waybar ~/.config -r
 if [ $CUSTOM_TEMP -eq 1 ]; then
     sed -i '/"temperature": {/a \\t\t"hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",' ~/.config/waybar/config
+fi
+
+if [ $PC -eq 2 ]; then
+    # Higher sensibility on pc 2
+    sed -i 's/pointer_accel 0.1/pointer_accel 0.5/g' ~/.config/sway/config
 fi
 
 if [ $GAMMASTEP -eq 1 ]; then
