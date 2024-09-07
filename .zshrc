@@ -71,7 +71,7 @@ alias notion="firefox https://notion.so"
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
 hx () {
-	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Helix\007"
+	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Helix - ${$(pwd)##*/}\007"
 	/usr/bin/hx $@
 	local code=$?
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Alacritty\007"
