@@ -67,12 +67,15 @@ bindkey '\e[1;5A' sudo-previous
 # End of lines configured by zsh-newuser-install
 
 # alias
+alias notion="firefox https://notion.so"
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
 hx () {
-	[[ $TERM == "alacritty" ]] && echo "\e]2;Helix"
+	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Helix\007"
 	/usr/bin/hx $@
-	[[ $TERM == "alacritty" ]] && echo "\e]2;Alacritty"
+	local code=$?
+	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Alacritty\007"
+	return $exit_code
 }
 
 #env
@@ -88,6 +91,7 @@ export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 export GTK_THEME=Adwaita:dark
 export GDK_BACKEND=wayland
+export EDITOR=hx
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
