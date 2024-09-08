@@ -229,8 +229,8 @@ $bindsym $mod+Escape mode "passtrough"
 $bindsym $mod+Pause mode "passtrough"
 
 # Luminosité
-$bindsym XF86MonBrightnessUp exec /home/julien/script/augment_lum.sh 10
-$bindsym XF86MonBrightnessDown exec /home/julien/script/dim_lum.sh 10
+$bindsym XF86MonBrightnessUp exec ~/script/augment_lum.sh 10
+$bindsym XF86MonBrightnessDown exec ~/script/dim_lum.sh 10
 # Volume
 $bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 $bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -264,4 +264,4 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CU
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
-exec /home/julien/script/init
+exec ~/script/init

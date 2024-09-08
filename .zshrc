@@ -67,7 +67,7 @@ bindkey '\e[1;5A' sudo-previous
 # End of lines configured by zsh-newuser-install
 
 # alias
-alias notion="firefox https://notion.so"
+alias notion="alacritty -e 'firefox https://notion.so'"
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
 hx () {
