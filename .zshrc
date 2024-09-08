@@ -13,7 +13,7 @@ zstyle ':completion:*' auto-description 'argument: %d'
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
 zstyle ':completion:*' prompt '%e err'
-zstyle :compinstall filename '/home/julien/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -67,7 +67,7 @@ bindkey '\e[1;5A' sudo-previous
 # End of lines configured by zsh-newuser-install
 
 # alias
-alias notion="alacritty -e 'firefox https://notion.so'"
+alias notion="alacritty -e firefox https://notion.so"
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
 hx () {
@@ -97,7 +97,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # opam configuration
-[[ ! -r /home/julien/.opam/opam-init/init.zsh ]] || source /home/julien/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 eval $(opam env)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

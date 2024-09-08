@@ -71,7 +71,6 @@ auto-format = true
 
 [[grammar]]
 name = "scss"
-# source = { path = "/home/julien/code/tree-sitter-scss" }
 source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-scss", rev = "8f47fa8be72ac299cab4c6aa02668635f2dcd4be" }
 
 [[language]]
