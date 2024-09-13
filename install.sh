@@ -103,7 +103,7 @@ fi
 
 if [ $PC -eq 2 ]; then
     # Higher sensibility on pc 2
-    sed -i 's/pointer_accel 0.1/pointer_accel 0.5/g' ~/.config/sway/config
+    sed -i 's/pointer_accel 0.1/pointer_accel 0.6/g' ~/.config/sway/config
     echo 'export WLR_NO_HARDWARE_CURSORS=1' >> ~/.zshrc
 fi
 
