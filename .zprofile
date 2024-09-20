@@ -9,3 +9,5 @@ eval $(echo "export "$(dbus-launch | tr '\n' ' '))
 (wireplumber > ~/.logs/wireplumber.log 2>&1 &) > /dev/null
 
 eval `ssh-agent` > /dev/null
+
+fastfetch
