@@ -55,7 +55,7 @@ language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
 name = "tsx"
 indent = { tab-width = 4, unit = "    " }
 language-servers = [ "typescript-language-server", "eslint", "cssmodules", "emmet-ls" ]
-# auto-format = true
+auto-format = false
 
 [[language]]
 name = "rust"
@@ -64,10 +64,15 @@ formatter = { command = "rustfmt" }
 auto-format = false
 
 [[language]]
+name = "c"
+indent = { tab-width = 4, unit = "    " }
+# formatter = { command = "clang-format" }
+
+[[language]]
 name = "scss"
 indent = { tab-width = 4, unit = "    " }
 language-servers = [ "vscode-css-language-server", "cssmodules" ]
-auto-format = true
+auto-format = false
 
 [[grammar]]
 name = "scss"
@@ -82,7 +87,7 @@ language-servers = [
 [[language]]
 name = "ocaml"
 indent = { tab-width = 4, unit = "    " }
-formatter = { command = "ocamlformat", args=["-", "--impl", "--enable-outside-detected-project"] }
+formatter = { command = "ocamlformat", args=["-", "--impl", "--enable-outside-detected-project", "--let-binding-indent=4"] }
 
 
 [[language]]

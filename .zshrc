@@ -70,6 +70,7 @@ bindkey '\e[1;5A' sudo-previous
 alias notion="alacritty -e firefox https://notion.so"
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
+alias bloat="~/script/bloat.sh && exit"
 hx () {
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Helix - ${$(pwd)##*/}\007"
 	/usr/bin/hx $@
