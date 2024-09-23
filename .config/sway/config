@@ -248,6 +248,9 @@ $bindsym Shift+S+$mod exec grimshot copy area
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
 
+# font pango:GohuFontuni14NerdFont Regular 11
+font pango:Monocraft Regular 10
+
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
