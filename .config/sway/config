@@ -78,8 +78,7 @@ input type:touchpad {
 #
     $bindsym $mod+Shift+KP_add output * dpms on
     $bindsym $mod+Shift+KP_Subtract output * dpms off
-    $bindsym $mod+d exec dmenu-wl_run -i
-#
+    $bindsym $mod+d exec dmenu-wl_run -sb "#b4d273" -sf "#2e2e2e" -nb "#2e2e2e" -h 25 -i -fn "Monocraft"
 # Basics:
 #
     # Start a terminal
