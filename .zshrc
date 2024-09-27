@@ -71,10 +71,11 @@ alias notion="alacritty -e firefox https://notion.so"
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
 alias bloat="~/script/bloat.sh && exit"
+alias ap="~/script/ap.sh"
 hx () {
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Helix - ${$(pwd)##*/}\007"
 	/usr/bin/hx $@
-	local code=$?
+	local exit_code=$?
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Alacritty\007"
 	return $exit_code
 }
