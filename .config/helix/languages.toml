@@ -44,7 +44,7 @@ config = { cargo = { features = "all" } }
 
 [language-server.gpt]
 command = "helix-gpt"
-args = ["--handler", "copilot", "--copilotApiKey", "KEY_HERE"]
+args = ["--handler", "copilot", "--copilotApiKey", "COPILOT_KEY"]
 
 [[language]]
 name = "typescript"

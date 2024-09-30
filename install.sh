@@ -34,6 +34,19 @@ case $r in
     * ) echo "wrong choice";exit;;
 esac
 
+# private tokens settings
+if [ -f .env ]
+then
+    export $(grep -v '^#' .env | xargs)
+fi
+
+if [ -z "$COPILOT_TOKEN" ]; then
+    read -p "Enter your Github Copilot Token: " COPILOT_TOKEN
+fi
+if [ -z "$WIFI_AP_PASSWORD" ]; then
+    read -p "Enter your Wifi AP password: " WIFI_AP_PASSWORD
+fi
+
 if [ $PC -eq 0 ]; then
     CUSTOM_TEMP=0
     GAMMASTEP=0
@@ -130,6 +143,9 @@ cd ..
 
 ./install-packages.sh $PACKAGES
 
+# Tokens
+sed -i "s/WIFI_PASSWORD/$WIFI_AP_PASSWORD/g" ~/script/ap.sh
+sed -i "s/COPILOT_KEY/$COPILOT_TOKEN/g" ~/.config/helix/languages.toml
 
 echo "Succesfully installed config."
 if ask "Reboot now?"; then
