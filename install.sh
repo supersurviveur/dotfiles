@@ -37,7 +37,8 @@ esac
 # private tokens settings
 if [ -f .env ]
 then
-    export $(grep -v '^#' .env | xargs)
+    COPILOT_TOKEN=$(cat .env | jq ".COPILOT_TOKEN?" | sed 's/^null$//g' -r)
+    WIFI_AP_PASSWORD=$(cat .env | jq ".WIFI_AP_PASSWORD?" | sed 's/^null$//g' -r)
 fi
 
 if [ -z "$COPILOT_TOKEN" ]; then
