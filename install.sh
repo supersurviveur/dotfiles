@@ -37,8 +37,11 @@ esac
 # private tokens settings
 if [ -f .env ]
 then
-    COPILOT_TOKEN=$(cat .env | jq ".COPILOT_TOKEN?" | sed 's/^null$//g' -r)
-    WIFI_AP_PASSWORD=$(cat .env | jq ".WIFI_AP_PASSWORD?" | sed 's/^null$//g' -r)
+    COPILOT_TOKEN=$(cat .env | jq ".COPILOT_TOKEN?" -r | sed 's/^null$//g')
+    WIFI_AP_PASSWORD=$(cat .env | jq ".WIFI_AP_PASSWORD?" -r | sed 's/^null$//g')
+    RCLONE_CLIENT_ID=$(cat .env | jq ".rclone_client_id?" -r | sed 's/^null$//g')
+    RCLONE_CLIENT_SECRET=$(cat .env | jq ".rclone_client_secret?" -r | sed 's/^null$//g')
+    RCLONE_TOKEN=$(cat .env | jq ".rclone_token?" -r | sed 's/^null$//g')
 fi
 
 if [ -z "$COPILOT_TOKEN" ]; then
@@ -97,6 +100,7 @@ fi
 cp .config/sway ~/.config -r
 cp .config/zathura ~/.config -r
 cp .config/helix ~/.config -r
+cp .config/rclone ~/.config -r
 cp .config/alacritty.toml ~/.config
 cp .config/code-flags.conf ~/.config
 cp .config/.zoxide ~/.config
@@ -147,6 +151,13 @@ cd ..
 # Tokens
 sed -i "s/WIFI_PASSWORD/$WIFI_AP_PASSWORD/g" ~/script/ap.sh
 sed -i "s/COPILOT_KEY/$COPILOT_TOKEN/g" ~/.config/helix/languages.toml
+if [ -n "$COPILOT_TOKEN" ]; then
+    sed -i "s/rclone_client_id/$RCLONE_CLIENT_ID/g" ~/.config/rclone/rclone.conf
+    sed -i "s/rclone_client_secret/$RCLONE_CLIENT_SECRET/g" ~/.config/rclone/rclone.conf
+    sed -i "/scope = drive/a token = $RCLONE_TOKEN" ~/.config/rclone/rclone.conf
+else
+    echo "No rclone token found, please add it manually."
+fi
 
 echo "Succesfully installed config."
 if ask "Reboot now?"; then
