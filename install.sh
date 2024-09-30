@@ -85,6 +85,7 @@ cp .config/zathura ~/.config -r
 cp .config/helix ~/.config -r
 cp .config/alacritty.toml ~/.config
 cp .config/code-flags.conf ~/.config
+cp .config/.zoxide ~/.config
 cp .ssh ~/ -r
 cp wallpaper ~/ -r
 cp script/{augment_lum.sh,dim_lum.sh,init-sway,exit-sway,init,eco.sh,eco+.sh,getSwayCwd.sh,ap.sh} ~/script
