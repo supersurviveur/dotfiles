@@ -28,7 +28,7 @@ set $bindsym bindsym --to-code
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output HDMI-A-1 bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
 # output DP-1 bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
-output * bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
+output * bg $(find ~/wallpaper/ghibli -type f | shuf -n 1) fill
 #output * bg #000000 solid_color
 #
 # Example configuration:
