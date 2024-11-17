@@ -2,7 +2,7 @@
 	border: none;
 	border-radius: 0;
 	font-size: 15px;
-	font-family: "MesloLGS NF";
+	font-family: "Monocraft";
 	box-shadow: none;
 	text-shadow: none;
 	transition-duration: 0s;
@@ -65,11 +65,13 @@ window {
 	margin: 0px 5px 0px 0px;
 }
 
-#cpu.warning, #battery.warning {
+#cpu.warning,
+#battery.warning {
 	color: #FFD866;
 }
 
-#cpu.critical, #temperature.critical {
+#cpu.critical,
+#temperature.critical {
 	color: #FF6188;
 }
 
@@ -77,6 +79,7 @@ window {
 	color: #FF6188;
 }
 
-#battery.charging, #battery.full {
+#battery.charging,
+#battery.full {
 	color: #03767f;
 }

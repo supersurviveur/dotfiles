@@ -76,7 +76,7 @@
 		"format-on": "\uf293",
 		"format-connected": "\uf293 {device_alias}",
 		"format-connected-battery": "\uf293 {device_alias} {device_battery_percentage}%",
-		"on-click": "exec alacritty -T 'Alacritty - bluetoothctl' -e bluetoothctl&",
+		"on-click": "exec alacritty -T 'Alacritty - bluetui' -e bluetui&",
 		"on-click-right": "if [[ $(bluetoothctl show | grep PowerState | cut -c14-) = 'on' ]]; then bluetoothctl power off; else bluetoothctl power on; fi",
 		"tooltip": false
 	},

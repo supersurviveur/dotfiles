@@ -46,6 +46,37 @@ config = { cargo = { features = "all" } }
 command = "helix-gpt"
 args = ["--handler", "copilot", "--copilotApiKey", "COPILOT_KEY"]
 
+[language-server.basedpyright]
+except-features = ["format", "code-action"]
+
+[language-server.basedpyright.config.basedpyright.analysis]
+typeCheckingMode = "standard"
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[language-server.ruff.config.settings.lint]
+preview = true
+select = [
+  # pycodestyle
+  "E",
+  # Pyflakes
+  "F",
+  # pyupgrade
+  "UP",
+  # flake8-bugbear
+  "B",
+  # flake8-simplify
+  "SIM",
+  # isort
+  "I",
+]
+
+[[language]]
+name = "python"
+language-servers = [ "basedpyright", "ruff" ]
+
 [[language]]
 name = "typescript"
 indent = { tab-width = 4, unit = "    " }
@@ -100,3 +131,8 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
 name = "json"
 indent = { tab-width = 4, unit = "    " }
 auto-format = false
+
+[[language]]
+name = "typst"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "typstyle" }

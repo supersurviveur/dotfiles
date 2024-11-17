@@ -3,5 +3,8 @@
 # Stop keepassXC
 keepassxc --lock
 killall keepassxc
+
+killall wallpapers.sh
+
 # Stop gammastep
 killall gammastep
