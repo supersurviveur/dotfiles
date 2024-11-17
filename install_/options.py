@@ -62,11 +62,12 @@ class Options:
 
         if self.options[name]["used"]:
             for option in specific_options:
-                if option[0] in self.local:
-                    value = self.local[option[0]]
-                else:
-                    value = input(f"Specific TODO {option[1]} :")
-                self.add_specific(name, option[0], value)
+                if not self.options[name]["specific"].get(option[0]):
+                    if option[0] in self.local:
+                        value = self.local[option[0]]
+                    else:
+                        value = input(f"{option[1]} :")
+                    self.add_specific(name, option[0], value)
 
     def get_specific(self, name):
         if name not in self.options:

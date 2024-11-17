@@ -108,7 +108,6 @@ cp .ssh ~/ -r
 cp wallpaper ~/ -r
 cp script/{augment_lum.sh,dim_lum.sh,init-sway,exit-sway,init,eco.sh,eco+.sh,getSwayCwd.sh,ap.sh,wallpapers.sh} ~/script
 cp .p10k.zsh ~/
-cp .profile ~/
 cp .zprofile ~/
 cp .zshrc ~/
 cp .zshenv ~/
@@ -151,10 +150,10 @@ cd ..
 # Tokens
 sed -i "s/%AP_PASSWORD%/$WIFI_AP_PASSWORD/g" ~/script/ap.sh
 sed -i "s/COPILOT_KEY/$COPILOT_TOKEN/g" ~/.config/helix/languages.toml
-if [ -n "$COPILOT_TOKEN" ]; then
+if [ -n "$RCLONE_TOKEN" ]; then
     sed -i "s/rclone_client_id/$RCLONE_CLIENT_ID/g" ~/.config/rclone/rclone.conf
     sed -i "s/rclone_client_secret/$RCLONE_CLIENT_SECRET/g" ~/.config/rclone/rclone.conf
-    sed -i "/scope = drive/a token = $RCLONE_TOKEN" ~/.config/rclone/rclone.conf
+    sed -i "s/rclone_token/$RCLONE_TOKEN/g" ~/.config/rclone/rclone.conf
 else
     echo "No rclone token found, please add it manually."
 fi

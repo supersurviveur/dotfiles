@@ -2,11 +2,21 @@ import inspect
 from copy import deepcopy
 
 from install_.options import Options
-from install_.utils import HOME, cpy
+from install_.utils import CONFIG_PATH, HOME, cpy, edit
 
 LAPTOP = Options()
+LAPTOP.zshrc = True
 LAPTOP.sway = True
 LAPTOP.waybar = True
+LAPTOP.rclone = True
+LAPTOP.zathura = True
+LAPTOP.alacritty = True
+LAPTOP.vscode = True
+LAPTOP.zoxide = True
+LAPTOP.access_point = True
+LAPTOP.gammastep = True
+LAPTOP.helix = True
+LAPTOP.add_specific("waybar", "battery", "y")
 
 
 def ssh_key():
@@ -20,10 +30,27 @@ PC = deepcopy(LAPTOP)
 
 
 def waybar_temperature():
-    print("uaeue")
+    edit(
+        CONFIG_PATH + "waybar/config",
+        lambda txt: '"temperature": {\n\t\t"hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",'.join(
+            txt.split('"temperature": {')
+        ),
+    )
+
+
+def sway_sensibility():
+    edit(
+        CONFIG_PATH + "sway/config",
+        lambda txt: txt.replace("pointer_accel 0.1", "pointer_accel 0.6"),
+    )
+    edit(HOME + "/.zshrc", lambda txt: txt + "\nexport WLR_NO_HARDWARE_CURSORS=1")
 
 
 PC.custom_funcs.append(waybar_temperature)
+PC.custom_funcs.append(sway_sensibility)
+
+PC.gammastep = False
+PC.add_specific("waybar", "battery", "n")
 
 
 def get_config() -> Options:
@@ -51,7 +78,12 @@ options = get_config()
 funcs = []
 
 
-def install(name, specific_options: tuple[tuple[str, str], ...] = (), dependencies=()):
+def install(
+    name,
+    specific_options: tuple[tuple[str, str], ...] = (),
+    dependencies=(),
+    else_func=None,
+):
     options.ask(name, specific_options, dependencies)
 
     def wrapper(func):
@@ -62,6 +94,8 @@ def install(name, specific_options: tuple[tuple[str, str], ...] = (), dependenci
                 else:
                     func()
                 print(f"Successfully installed {name}")
+            elif else_func:
+                else_func()
 
         funcs.append(inner)
 

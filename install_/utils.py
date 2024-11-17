@@ -3,6 +3,7 @@ import shutil
 from collections.abc import Callable
 
 HOME = os.path.expanduser("~")
+# HOME += "/test"
 CONFIG_PATH = f"{HOME}/.config/"
 
 
@@ -25,7 +26,7 @@ def read(source):
 
 def write(dest, content):
     dest = os.path.abspath(dest)
-    with open(dest, 'w') as file:
+    with open(dest, "w") as file:
         return file.write(content)
 
 
@@ -33,3 +34,10 @@ def edit(source, func: Callable[[str], str]):
     content = read(source)
     content = func(content)
     write(source, content)
+
+
+def remove(source, word):
+    edit(
+        source,
+        lambda txt: "\n".join(filter(lambda line: word not in line, txt.splitlines())),
+    )
