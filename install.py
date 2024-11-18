@@ -44,7 +44,7 @@ def install_waybar(battery):
                 [
                     line
                     for (line, prev_line) in zip(
-                        ["", *txt.splitlines()], txt.splitlines()
+                        ["", *txt.splitlines()], [*txt.splitlines(), ""]
                     )
                     if 'battery",' not in line + prev_line
                 ]
