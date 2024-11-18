@@ -52,7 +52,8 @@ def remove_line_after(source, word, n=1):
                 take = n
             if take == 0:
                 result.append(line)
-            take -= 1
+            if take > 0:
+                take -= 1
         return "\n".join(result)
 
     edit(source, inner)
