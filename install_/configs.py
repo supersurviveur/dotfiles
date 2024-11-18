@@ -5,7 +5,7 @@ from install_.options import Options
 from install_.utils import CONFIG_PATH, HOME, cpy, edit
 
 LAPTOP = Options()
-LAPTOP.zshrc = True
+LAPTOP.zsh = True
 LAPTOP.sway = True
 LAPTOP.waybar = True
 LAPTOP.rclone = True
@@ -14,9 +14,14 @@ LAPTOP.alacritty = True
 LAPTOP.vscode = True
 LAPTOP.zoxide = True
 LAPTOP.access_point = True
-LAPTOP.gammastep = True
 LAPTOP.helix = True
+LAPTOP.keepassxc = True
+LAPTOP.gammastep = True
+LAPTOP.asusnumpad = True
+LAPTOP.__setattr__("rfkill service to unblock wifi and bluetooth cards", True)
+LAPTOP.__setattr__("enable numlock at startup", False)
 LAPTOP.add_specific("waybar", "battery", "y")
+LAPTOP.packages = False
 
 
 def ssh_key():
@@ -50,6 +55,8 @@ PC.custom_funcs.append(waybar_temperature)
 PC.custom_funcs.append(sway_sensibility)
 
 PC.gammastep = False
+PC.asusnumpad = False
+PC.__setattr__("enable numlock at startup", True)
 PC.add_specific("waybar", "battery", "n")
 
 
@@ -76,6 +83,8 @@ options = get_config()
 
 
 funcs = []
+YAY = []
+PACMAN = []
 
 
 def install(
@@ -83,12 +92,16 @@ def install(
     specific_options: tuple[tuple[str, str], ...] = (),
     dependencies=(),
     else_func=None,
+    yay=(),
+    pacman=(),
 ):
     options.ask(name, specific_options, dependencies)
 
     def wrapper(func):
         def inner():
             if options[name]:
+                YAY.extend(yay)
+                PACMAN.extend(pacman)
                 if len(inspect.getfullargspec(func).args) >= 1:
                     func(**options.get_specific(name))
                 else:

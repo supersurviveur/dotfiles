@@ -1,8 +1,11 @@
-from install_.configs import install, launch_install
+import os
+
+from install_.configs import PACMAN, YAY, install, launch_install
+from install_.options import ask_yes_no
 from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove
 
 
-@install("zshrc")
+@install("zsh", pacman=["zsh", "zsh-syntax-highlighting"])
 def install_zshrc():
     cpy(".zshrc", HOME + "/.zshrc")
     cpy(".zshenv", HOME + "/.zshenv")
@@ -10,7 +13,7 @@ def install_zshrc():
     cpy(".p10k.zsh", HOME + "/.p10k.zsh")
 
 
-@install("sway")
+@install("sway", pacman=["sway", "swaybg", "zenity", "xorg-xwayland", "htop"])
 def install_sway():
     cpy(".config/sway", CONFIG_PATH + "sway")
     cpy("script/init", HOME + "/script/init")
@@ -30,19 +33,37 @@ def install_sway():
     "waybar",
     dependencies=["sway"],
     specific_options=(("battery", "Do you have a battery ? [Y/n]"),),
+    pacman=["waybar"],
 )
 def install_waybar(battery):
     cpy(".config/waybar", CONFIG_PATH + "waybar")
     if battery.lower() == "n":
-        remove(
+        edit(
             CONFIG_PATH + "waybar/config",
-            "battery",
+            lambda txt: "\n".join(
+                [
+                    line
+                    for (line, prev_line) in zip(txt.splitlines()[1:], txt.splitlines())
+                    if 'battery",' not in line + prev_line
+                ]
+            ),
         )
 
 
-@install("zathura", dependencies=["sway"])
+@install("zathura", dependencies=["sway"], pacman=["zathura", "zathura-pdf-mupdf"])
 def install_zathura():
     cpy(".config/zathura", CONFIG_PATH + "zathura")
+
+
+def no_keepassxc():
+    remove(HOME + "/script/exit-sway", "keepassxc")
+    remove(HOME + "/script/init", "keepassxc")
+
+
+@install(
+    "keepassxc", dependencies=["sway"], else_func=no_keepassxc, pacman=["keepassxc"]
+)
+def install_keepassxc(): ...
 
 
 @install(
@@ -52,6 +73,7 @@ def install_zathura():
         ("rclone_client_secret", "Enter your client secret :"),
         ("rclone_token", "Enter your rclone token"),
     ),
+    pacman=["rclone"],
 )
 def install_rclone(rclone_client_id, rclone_client_secret, rclone_token):
     cpy(".config/rclone", CONFIG_PATH + "rclone")
@@ -67,24 +89,31 @@ def install_rclone(rclone_client_id, rclone_client_secret, rclone_token):
         CONFIG_PATH + "rclone/rclone.conf",
         lambda txt: txt.replace("rclone_token", rclone_token),
     )
+    os.system("sudo cp services/custom-rclone /etc/init.d/custom-rclone")
+    os.system("sudo chmod +x /etc/init.d/custom-rclone")
+    os.system("sudo rc-update add custom-rclone")
 
 
-@install("alacritty", dependencies=["sway"])
+@install("alacritty", dependencies=["sway"], pacman=["alacritty"])
 def install_alacritty():
     cpy(".config/alacritty.toml", CONFIG_PATH + "alacritty.toml")
 
 
-@install("vscode", dependencies=["sway"])
+@install("vscode", dependencies=["sway"], yay=["visual-studio-code-bin"])
 def install_vscode():
     cpy(".config/code-flags.conf", CONFIG_PATH + "code-flags.conf")
 
 
-@install("zoxide", dependencies=["sway"])
+@install("zoxide", dependencies=["sway"], pacman=["zoxide"])
 def install_zoxide():
     cpy(".config/.zoxide", CONFIG_PATH + ".zoxide")
 
 
-@install("access_point", specific_options=(("ap_password", "Select an ap_password: "),))
+@install(
+    "access_point",
+    specific_options=(("ap_password", "Select an ap_password: "),),
+    yay=["linux-wifi-hotspot-bin"],
+)
 def install_ap(ap_password):
     cpy("script/ap.sh", HOME + "/script/ap.sh")
     edit(HOME + "/script/ap.sh", lambda txt: txt.replace("%AP_PASSWORD%", ap_password))
@@ -95,7 +124,12 @@ def no_gammastep():
     remove(HOME + "/script/exit-sway", "gammastep")
 
 
-@install("gammastep", dependencies=["sway"], else_func=no_gammastep)
+@install(
+    "gammastep",
+    dependencies=["sway"],
+    else_func=no_gammastep,
+    yay=["gammastep-wayland-git"],
+)
 def install_gammastep():
     cpy(".config/gammastep", CONFIG_PATH + "gammastep")
 
@@ -114,8 +148,53 @@ def install_helix(copilot_token):
     )
 
 
+@install(
+    "rfkill service to unblock wifi and bluetooth cards",
+)
+def install_rfkill_services():
+    os.system("sudo cp services/custom-rfkill /etc/init.d/custom-rfkill")
+    os.system("sudo chmod +x /etc/init.d/custom-rfkill")
+    os.system("sudo rc-update add custom-rfkill")
+
+
+@install("asusnumpad", yay=["asus-numberpad-driver-up5401ea-3145-git"])
+def install_asusnumpad():
+    os.system("sudo cp services/custom-asus-numpad /etc/init.d/custom-asus-numpad")
+    os.system("sudo chmod +x /etc/init.d/custom-asus-numpad")
+    os.system("sudo rc-update add custom-asus-numpad")
+
+
+@install(
+    "enable numlock at startup",
+)
+def install_numlock():
+    edit(
+        CONFIG_PATH + "sway/config",
+        lambda txt: txt.replace(
+            "input type:keyboard {",
+            "input type:keyboard {\n     xkb_numlock enabled",
+        ),
+    )
+
+
+@install(
+    "packages",
+)
+def install_packages():
+    # Install packages
+    if PACMAN:
+        print("Installing pacman packages")
+        os.system(f"sudo pacman -S {" ".join(PACMAN)}")
+    if YAY:
+        print("Installing yay packages")
+        os.system(f"yay -S {" ".join(YAY)}")
+
+
 def main():
     launch_install()
+
+    if ask_yes_no("Reboot now ?", False):
+        os.system("sudo reboot")
 
 
 main()
