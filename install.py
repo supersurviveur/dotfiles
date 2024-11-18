@@ -43,7 +43,9 @@ def install_waybar(battery):
             lambda txt: "\n".join(
                 [
                     line
-                    for (line, prev_line) in zip(txt.splitlines()[1:], txt.splitlines())
+                    for (line, prev_line) in zip(
+                        ["", *txt.splitlines()], txt.splitlines()
+                    )
                     if 'battery",' not in line + prev_line
                 ]
             ),
