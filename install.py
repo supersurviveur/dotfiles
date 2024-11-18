@@ -94,7 +94,7 @@ def install_impala(): ...
 def install_waybar(battery):
     cpy(".config/waybar", CONFIG_PATH + "waybar")
     if battery.lower() == "n":
-        remove_line_after(CONFIG_PATH + "waybar/config", 'battery",')
+        remove_line_after(CONFIG_PATH + "waybar/config", 'battery",', n=2)
 
 
 @install("zathura", pacman=["zathura", "zathura-pdf-mupdf"])
@@ -183,7 +183,7 @@ def install_gammastep():
 
 
 def no_bluetooth():
-    remove_line_after(CONFIG_PATH + "waybar/config", 'bluetooth",')
+    remove(CONFIG_PATH + "waybar/config", 'bluetooth",')
 
 
 @install("bluetooth", pacman=["bluez-openrc", "bluez-utils"], else_func=no_bluetooth)
