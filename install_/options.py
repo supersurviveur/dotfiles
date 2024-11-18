@@ -25,6 +25,9 @@ class Options:
         self.options: dict[str, Option] = dict()
         self.local = dict()
         self.custom_funcs: list[Callable] = []
+
+        self.default = True
+
         with open(".env") as file:
             self.local: dict[str, str] = json.load(file)
 

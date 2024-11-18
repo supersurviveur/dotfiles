@@ -34,7 +34,6 @@ rustup = pacman
 sway = pacman
 swaybg = pacman
 ttf-meslo-nerd = pacman
-ttf-mononoki-nerd = pacman
 unzip = pacman
 waybar = pacman
 wev = pacman

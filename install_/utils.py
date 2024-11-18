@@ -41,3 +41,18 @@ def remove(source, word):
         source,
         lambda txt: "\n".join(filter(lambda line: word not in line, txt.splitlines())),
     )
+
+
+def remove_line_after(source, word, n=1):
+    def inner(txt):
+        take = 0
+        result = []
+        for line in txt.splitlines():
+            if word in line:
+                take = n
+            if take == 0:
+                result.append(line)
+            take -= 1
+        return "\n".join(result)
+
+    edit(source, inner)

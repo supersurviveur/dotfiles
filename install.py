@@ -1,20 +1,45 @@
 import os
 
-from install_.configs import PACMAN, YAY, install, launch_install
+from install_.configs import CARGO, NPM, PACMAN, YAY, install, launch_install
 from install_.options import ask_yes_no
-from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove
+from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove, remove_line_after
 
 
-@install("zsh", pacman=["zsh", "zsh-syntax-highlighting"])
-def install_zshrc():
-    cpy(".zshrc", HOME + "/.zshrc")
-    cpy(".zshenv", HOME + "/.zshenv")
-    cpy(".zprofile", HOME + "/.zprofile")
-    cpy(".p10k.zsh", HOME + "/.p10k.zsh")
-
-
-@install("sway", pacman=["sway", "swaybg", "zenity", "xorg-xwayland", "htop"])
-def install_sway():
+@install(
+    "default",
+    pacman=[
+        "artix-archlinux-support",
+        "dhcpcd",
+        "dhcpcd-openrc",
+        "elogind-openrc",
+        "htop",
+        "iwd",
+        "iwd-openrc",
+        "man-db",
+        "man-pages",
+        "pipewire-pulse",
+        "pipewire",
+        "wireplumber",
+        "sway",
+        "swaybg",
+        "zenity",
+        "xbindkeys",
+        "xdg-user-dirs",
+        "xorg-xmodmap",
+        "xorg-xwayland",
+        "xdg-desktop-portal-wlr-artix",
+        "pavucontrol",
+        "wev",
+        "wl-clipboard",
+        "unzip",
+        "openntpd",
+        "openntpd-openrc",
+        "cpupower",
+        "mesa",
+        "mesa-utils",
+    ],
+)
+def install_default():
     cpy(".config/sway", CONFIG_PATH + "sway")
     cpy("script/init", HOME + "/script/init")
     cpy("script/init-sway", HOME + "/script/init-sway")
@@ -29,30 +54,50 @@ def install_sway():
     cpy("wallpaper", HOME + "/wallpaper")
 
 
+@install("zsh", pacman=["zsh", "zsh-syntax-highlighting"])
+def install_zshrc():
+    cpy(".zshrc", HOME + "/.zshrc")
+    cpy(".zshenv", HOME + "/.zshenv")
+    cpy(".zprofile", HOME + "/.zprofile")
+    cpy(".p10k.zsh", HOME + "/.p10k.zsh")
+
+
+def no_bluetooth():
+    remove_line_after(CONFIG_PATH + "waybar/config", 'bluetooth",')
+
+
+@install("bluetooth", pacman=["bluez-openrc", "bluez-utils"], else_func=no_bluetooth)
+def install_bluetooth(): ...
+
+
+def no_dmenu():
+    remove(CONFIG_PATH + "sway/config", "dmenu")
+
+
+@install("dmenu", yay=["dmenu-wayland-git"], else_func=no_dmenu)
+def install_dmenu(): ...
+
+
+def no_eza():
+    remove(HOME + "/.zshrc", "eza")
+
+
+@install("eza", pacman=["eza"], else_func=no_eza)
+def install_eza(): ...
+
+
 @install(
     "waybar",
-    dependencies=["sway"],
     specific_options=(("battery", "Do you have a battery ? [Y/n]"),),
     pacman=["waybar"],
 )
 def install_waybar(battery):
     cpy(".config/waybar", CONFIG_PATH + "waybar")
     if battery.lower() == "n":
-        edit(
-            CONFIG_PATH + "waybar/config",
-            lambda txt: "\n".join(
-                [
-                    line
-                    for (line, prev_line) in zip(
-                        ["", *txt.splitlines()], [*txt.splitlines(), ""]
-                    )
-                    if 'battery",' not in line + prev_line
-                ]
-            ),
-        )
+        remove_line_after(CONFIG_PATH + "waybar/config", 'battery",')
 
 
-@install("zathura", dependencies=["sway"], pacman=["zathura", "zathura-pdf-mupdf"])
+@install("zathura", pacman=["zathura", "zathura-pdf-mupdf"])
 def install_zathura():
     cpy(".config/zathura", CONFIG_PATH + "zathura")
 
@@ -62,9 +107,7 @@ def no_keepassxc():
     remove(HOME + "/script/init", "keepassxc")
 
 
-@install(
-    "keepassxc", dependencies=["sway"], else_func=no_keepassxc, pacman=["keepassxc"]
-)
+@install("keepassxc", else_func=no_keepassxc, pacman=["keepassxc"])
 def install_keepassxc(): ...
 
 
@@ -96,17 +139,17 @@ def install_rclone(rclone_client_id, rclone_client_secret, rclone_token):
     os.system("sudo rc-update add custom-rclone")
 
 
-@install("alacritty", dependencies=["sway"], pacman=["alacritty"])
+@install("alacritty", pacman=["alacritty", "ttf-meslo-nerd"])
 def install_alacritty():
     cpy(".config/alacritty.toml", CONFIG_PATH + "alacritty.toml")
 
 
-@install("vscode", dependencies=["sway"], yay=["visual-studio-code-bin"])
+@install("vscode", yay=["visual-studio-code-bin"])
 def install_vscode():
     cpy(".config/code-flags.conf", CONFIG_PATH + "code-flags.conf")
 
 
-@install("zoxide", dependencies=["sway"], pacman=["zoxide"])
+@install("zoxide", pacman=["zoxide"])
 def install_zoxide():
     cpy(".config/.zoxide", CONFIG_PATH + ".zoxide")
 
@@ -128,7 +171,6 @@ def no_gammastep():
 
 @install(
     "gammastep",
-    dependencies=["sway"],
     else_func=no_gammastep,
     yay=["gammastep-wayland-git"],
 )
@@ -138,7 +180,6 @@ def install_gammastep():
 
 @install(
     "helix",
-    dependencies=["sway"],
     specific_options=(("copilot_token", "Enter your copilot_token"),),
 )
 def install_helix(copilot_token):
@@ -190,6 +231,12 @@ def install_packages():
     if YAY:
         print("Installing yay packages")
         os.system(f"yay -S {" ".join(YAY)}")
+    if NPM:
+        print("Installing npm packages")
+        os.system(f"sudo npm install -g {" ".join(NPM)}")
+    if CARGO:
+        print("Installing cargo packages")
+        os.system(f"cargo install {" ".join(CARGO)}")
 
 
 def main():

@@ -1,9 +1,12 @@
 import inspect
-from copy import deepcopy
 import platform
+from copy import deepcopy
 
 from install_.options import Options
 from install_.utils import CONFIG_PATH, HOME, cpy, edit
+
+BASIC = Options()
+# TODO what is needed here ?
 
 LAPTOP = Options()
 LAPTOP.zsh = True
@@ -19,6 +22,9 @@ LAPTOP.helix = True
 LAPTOP.keepassxc = True
 LAPTOP.gammastep = True
 LAPTOP.asusnumpad = True
+LAPTOP.dmenu = True
+LAPTOP.bluetooth = True
+LAPTOP.eza = True
 LAPTOP.__setattr__("rfkill service to unblock wifi and bluetooth cards", True)
 LAPTOP.__setattr__("enable numlock at startup", False)
 LAPTOP.add_specific("waybar", "battery", "y")
@@ -91,6 +97,8 @@ options = get_config()
 funcs = []
 YAY = []
 PACMAN = []
+NPM = []
+CARGO = []
 
 
 def install(
@@ -100,6 +108,8 @@ def install(
     else_func=None,
     yay=(),
     pacman=(),
+    npm=(),
+    cargo=(),
 ):
     options.ask(name, specific_options, dependencies)
 
@@ -108,6 +118,8 @@ def install(
             if options[name]:
                 YAY.extend(yay)
                 PACMAN.extend(pacman)
+                NPM.extend(npm)
+                CARGO.extend(cargo)
                 if len(inspect.getfullargspec(func).args) >= 1:
                     func(**options.get_specific(name))
                 else:
