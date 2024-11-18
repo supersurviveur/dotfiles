@@ -62,14 +62,6 @@ def install_zshrc():
     cpy(".p10k.zsh", HOME + "/.p10k.zsh")
 
 
-def no_bluetooth():
-    remove_line_after(CONFIG_PATH + "waybar/config", 'bluetooth",')
-
-
-@install("bluetooth", pacman=["bluez-openrc", "bluez-utils"], else_func=no_bluetooth)
-def install_bluetooth(): ...
-
-
 def no_dmenu():
     remove(CONFIG_PATH + "sway/config", "dmenu")
 
@@ -84,6 +76,14 @@ def no_eza():
 
 @install("eza", pacman=["eza"], else_func=no_eza)
 def install_eza(): ...
+
+
+def no_impala():
+    remove(CONFIG_PATH + "waybar/config", "impala")
+
+
+@install("impala", cargo=["impala"], else_func=no_impala)
+def install_impala(): ...
 
 
 @install(
@@ -149,7 +149,11 @@ def install_vscode():
     cpy(".config/code-flags.conf", CONFIG_PATH + "code-flags.conf")
 
 
-@install("zoxide", pacman=["zoxide"])
+def no_zoxide():
+    remove(HOME + "/.zshrc", "zoxide")
+
+
+@install("zoxide", pacman=["zoxide"], else_func="zoxide")
 def install_zoxide():
     cpy(".config/.zoxide", CONFIG_PATH + ".zoxide")
 
@@ -176,6 +180,14 @@ def no_gammastep():
 )
 def install_gammastep():
     cpy(".config/gammastep", CONFIG_PATH + "gammastep")
+
+
+def no_bluetooth():
+    remove_line_after(CONFIG_PATH + "waybar/config", 'bluetooth",')
+
+
+@install("bluetooth", pacman=["bluez-openrc", "bluez-utils"], else_func=no_bluetooth)
+def install_bluetooth(): ...
 
 
 @install(
