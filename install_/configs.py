@@ -1,5 +1,6 @@
 import inspect
 from copy import deepcopy
+import platform
 
 from install_.options import Options
 from install_.utils import CONFIG_PATH, HOME, cpy, edit
@@ -61,7 +62,12 @@ PC.add_specific("waybar", "battery", "n")
 
 
 def get_config() -> Options:
-    while True:
+    user = 0
+    if platform.node() == "julien-pc":
+        user = 1
+    elif platform.node() == "julien-pc-fixe":
+        user = 2
+    while True and not user:
         read = input("""0 - Custom
 1 - Portable
 2 - Fixe
