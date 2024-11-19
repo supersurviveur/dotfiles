@@ -98,8 +98,6 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 "C-c" = ":clipboard-yank"
 "C-x" = [":clipboard-yank", "delete_selection"]
 "C-v" = ":clipboard-paste-after"
-"y" = ":clipboard-yank"
-"p" = ":clipboard-paste-after"
 
 "C-space" =  "completion"
 
