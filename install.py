@@ -54,7 +54,7 @@ def install_default():
     cpy("wallpaper", HOME + "/wallpaper")
 
 
-@install("zsh", pacman=["zsh", "zsh-syntax-highlighting"])
+@install("zsh", pacman=["zsh", "zsh-syntax-highlighting", "zsh-autosuggestions"])
 def install_zshrc():
     cpy(".zshrc", HOME + "/.zshrc")
     cpy(".zshenv", HOME + "/.zshenv")
