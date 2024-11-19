@@ -27,7 +27,6 @@ from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove, remove_line_aft
         "xdg-user-dirs",
         "xorg-xmodmap",
         "xorg-xwayland",
-        "xdg-desktop-portal-wlr-artix",
         "pavucontrol",
         "wev",
         "wl-clipboard",
@@ -37,6 +36,9 @@ from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove, remove_line_aft
         "cpupower",
         "mesa",
         "mesa-utils",
+    ],
+    yay=[
+        "xdg-desktop-portal-wlr-artix",
     ],
 )
 def install_default():
@@ -239,10 +241,10 @@ def install_packages():
     # Install packages
     if PACMAN:
         print("Installing pacman packages")
-        os.system(f"sudo pacman -S {" ".join(PACMAN)}")
+        os.system(f"sudo pacman -Sy {" ".join(PACMAN)}")
     if YAY:
         print("Installing yay packages")
-        os.system(f"yay -S {" ".join(YAY)}")
+        os.system(f"yay -Sy {" ".join(YAY)}")
     if NPM:
         print("Installing npm packages")
         os.system(f"sudo npm install -g {" ".join(NPM)}")

@@ -16,17 +16,18 @@ ask() {
         esac
     done
 }
-UEFI=$(ask "Are you on UEFI ? [Y/n]")
+UEFI=$(ask "Are you on UEFI ?")
 
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 hwclock --systohc
 
-sed 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
+sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
+sed -i 's/keymap="us"/keymap="fr"/g' /etc/conf.d/keymaps
 
 pacman -S grub os-prober efibootmgr
 if $UEFI; then
-  grub-install --target=x86_64 --efi-directory=/boot/efi --bootloader-id=grub
+  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
 else
   lsblk
   echo ""
@@ -40,13 +41,28 @@ echo "Root password"
 passwd
 read -p "Enter user name:" USER_NAME
 useradd -m $USER_NAME
+usermod -aG wheel $USER_NAME
+sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g" /etc/sudoers
 echo "$USER_NAME password"
 passwd $USER_NAME
+touch /etc/hostname
 echo $USER_NAME >> /etc/hostname
+touch /etc/hosts
 echo "127.0.0.1 localhost" >> /ect/hosts
 echo "::1 localhost" >> /ect/hosts
 
-pacman -S dhcpcd
+pacman -S dhcpcd dhcpcd-openrc
+rc-update add dhcpcd
+
+pacman -S artix-archlinux-support
+echo "
+[extra]
+Include = /etc/pacman.d/mirrorlist-arch
+
+[multilib]
+Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+
+pacman -Sy
 
 exit
 

@@ -1,4 +1,4 @@
-# Need a partition with label ROOT and another with HOME (an ESP one if you are on uefi) and internet connection
+# Need a partition with label ROOT (an ESP one if you are on uefi too) and internet connection
 # Tre script will mount the disk, and install artix on it
 
 # We need permissions
@@ -19,14 +19,13 @@ ask() {
         esac
     done
 }
-UEFI=$(ask "Are you on UEFI ? [Y/n]")
+UEFI=$(ask "Are you on UEFI ?")
 
 loadkeys fr
 
 mount /dev/disk/by-label/ROOT /mnt
 mkdir /mnt/boot
 mkdir /mnt/home
-mount /dev/disk/by-label/HOME /mnt/home
 if $UEFI; then
   mkdir /mnt/boot/efi
   mount /dev/disk/by-label/ESP /mnt/boot/efi
@@ -40,8 +39,10 @@ basestrap /mnt linux linux-firmware
 fstabgen -U /mnt >> /mnt/etc/fstab
 
 
+echo "chrooting..."
 cp artix-chrooted.sh /mnt/
 artix-chroot /mnt ./artix-chrooted.sh
+rm /mnt/artix-chrooted.sh
 
 umount -R /mnt
 if ask "Reboot now ?"; then
