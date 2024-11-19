@@ -42,16 +42,20 @@ other-lines = "error"
 "C-h" = "toggle_comments"
 "C-c" = ":clipboard-yank"
 "C-x" = [":clipboard-yank", "delete_selection"]
-"C-v" = ":clipboard-paste-replace"
+"C-v" = ":clipboard-paste-after"
+"y" = ":clipboard-yank"
+"p" = ":clipboard-paste-after"
 
 # custom movements and key swaps
 "n" = "move_char_right"
-"s" = "move_char_left"
-"h" = "move_visual_line_down"
-"l" = "move_visual_line_up"
+"t" = "move_char_left"
+"r" = "move_visual_line_down"
+"s" = "move_visual_line_up"
 
+"l" = "replace"
 "j" = "select_regex"
-"C-i" = "page_cursor_half_down"
+"k" = "search_next"
+"K" = "search_prev"
 
 "C-d" = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
 "tab" = "indent"
@@ -66,30 +70,40 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 "C-h" = "toggle_comments"
 "C-c" = ":clipboard-yank"
 "C-x" = [":clipboard-yank", "delete_selection"]
-"C-v" = ":clipboard-paste-replace"
+"C-v" = ":clipboard-paste-after"
+"y" = ":clipboard-yank"
+"p" = ":clipboard-paste-after"
 
 # custom movements and key swaps
-"n" = "extend_char_right"
-"s" = "extend_char_left"
-"h" = "extend_visual_line_down"
-"l" = "extend_visual_line_up"
+"n" = "move_char_right"
+"t" = "move_char_left"
+"r" = "move_visual_line_down"
+"s" = "move_visual_line_up"
 
+"l" = "replace"
 "j" = "select_regex"
 "k" = "extend_search_next"
 "K" = "extend_search_prev"
 
+"C-d" = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
 "tab" = "indent"
 "S-tab" = "unindent"
+A-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
 
 [keys.insert]
 "S-A-e" = ":fmt"
 "C-h" = "toggle_comments"
 "C-c" = ":clipboard-yank"
 "C-x" = [":clipboard-yank", "delete_selection"]
-"C-v" = ":clipboard-paste-replace"
+"C-v" = ":clipboard-paste-after"
+"y" = ":clipboard-yank"
+"p" = ":clipboard-paste-after"
 
 "C-space" =  "completion"
 
+"C-d" = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
 A-down = ["extend_to_line_bounds", "delete_selection", "paste_after", "move_line_down"]
 A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "move_line_up"]
 
