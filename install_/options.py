@@ -27,9 +27,13 @@ class Options:
         self.custom_funcs: list[Callable] = []
 
         self.default = True
+        self.bootstrap = True
 
-        with open(".env") as file:
-            self.local: dict[str, str] = json.load(file)
+        try:
+            with open(".env") as file:
+                self.local: dict[str, str] = json.load(file)
+        except Exception as _:
+            ...
 
     def __getitem__(self, key):
         return self.options.get(key, dict()).get("used", False)

@@ -19,9 +19,17 @@ ask() {
         esac
     done
 }
-UEFI=$(ask "Are you on UEFI ?")
+ask "Are you on UEFI ?"
+UEFI=$?
+ask "Do you want a bepo layout ?"
+KEYS=$?
 
-loadkeys fr
+case $KEYS in
+    0 ) KEYS=fr-bepo;;
+    1 ) KEYS=fr;;
+esac
+
+loadkeys $KEYS
 
 mount /dev/disk/by-label/ROOT /mnt
 mkdir /mnt/boot
@@ -33,15 +41,16 @@ fi
 
 rc-service ntpd start
 
-basestrap /mnt base base-devel openrc elogind-openrc
-basestrap /mnt linux linux-firmware
+while ! basestrap /mnt base base-devel openrc elogind-openrc linux linux-firmware; do
+  sleep 1
+done;
 
 fstabgen -U /mnt >> /mnt/etc/fstab
 
 
 echo "chrooting..."
 cp artix-chrooted.sh /mnt/
-artix-chroot /mnt ./artix-chrooted.sh
+artix-chroot /mnt ./artix-chrooted.sh $UEFI $KEYS
 rm /mnt/artix-chrooted.sh
 
 umount -R /mnt

@@ -5,6 +5,21 @@ from install_.options import ask_yes_no
 from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove, remove_line_after
 
 
+@install("bootstrap")
+def startup():
+    if os.system("yay --version > /dev/null 2>&1"):
+        os.system(
+            "sudo pacman -S --no-confirm --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
+        )
+
+    if os.system("rustup --version > /dev/null 2>&1"):
+        os.system(
+            "sudo pacman -S --needed --no-confirm rustup && rustup default stable"
+        )
+
+    os.system("sudo pacman -S --needed --no-confirm npm")
+
+
 @install(
     "default",
     pacman=[
@@ -241,10 +256,10 @@ def install_packages():
     # Install packages
     if PACMAN:
         print("Installing pacman packages")
-        os.system(f"sudo pacman -Sy {" ".join(PACMAN)}")
+        os.system(f"sudo pacman -S --needed --no-confirm {" ".join(PACMAN)}")
     if YAY:
         print("Installing yay packages")
-        os.system(f"yay -Sy {" ".join(YAY)}")
+        os.system(f"yay -S --needed --no-confirm {" ".join(YAY)}")
     if NPM:
         print("Installing npm packages")
         os.system(f"sudo npm install -g {" ".join(NPM)}")

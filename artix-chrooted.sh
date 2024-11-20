@@ -16,22 +16,24 @@ ask() {
         esac
     done
 }
-UEFI=$(ask "Are you on UEFI ?")
+UEFI=$1
+KEYS=$2
 
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 hwclock --systohc
 
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
-sed -i 's/keymap="us"/keymap="fr"/g' /etc/conf.d/keymaps
+sed -i $(echo 's/keymap="us"/keymap="'$KEYS'"/g') /etc/conf.d/keymaps
 
-pacman -S grub os-prober efibootmgr
+pacman -S --no-confirm grub os-prober
 if $UEFI; then
+  pacman -S --no-confirm efibootmgr
   grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
 else
   lsblk
   echo ""
-  read -p "Enter the disk where grub should use (ex: /dev/sda):" DISK
+  read -p "Enter the disk where grub should be installed (ex: /dev/sda):" DISK
   grub-install --recheck $DISK
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -41,7 +43,7 @@ echo "Root password"
 passwd
 read -p "Enter user name:" USER_NAME
 useradd -m $USER_NAME
-usermod -aG wheel $USER_NAME
+usermod -aG wheel,video,audio,power,network,input,games $USER_NAME
 sed -i "s/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g" /etc/sudoers
 echo "$USER_NAME password"
 passwd $USER_NAME
@@ -51,10 +53,10 @@ touch /etc/hosts
 echo "127.0.0.1 localhost" >> /ect/hosts
 echo "::1 localhost" >> /ect/hosts
 
-pacman -S dhcpcd dhcpcd-openrc
+pacman -S --no-confirm dhcpcd dhcpcd-openrc
 rc-update add dhcpcd
 
-pacman -S artix-archlinux-support
+pacman -S --no-confirm artix-archlinux-support
 echo "
 [extra]
 Include = /etc/pacman.d/mirrorlist-arch
@@ -62,7 +64,9 @@ Include = /etc/pacman.d/mirrorlist-arch
 [multilib]
 Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
 
-pacman -Sy
+pacman -S --no-confirm python
+
+pacman -Syu
 
 exit
 
