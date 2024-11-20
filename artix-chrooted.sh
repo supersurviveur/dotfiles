@@ -26,9 +26,9 @@ sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
 sed -i $(echo 's/keymap="us"/keymap="'$KEYS'"/g') /etc/conf.d/keymaps
 
-pacman -S --no-confirm grub os-prober
-if $UEFI; then
-  pacman -S --no-confirm efibootmgr
+pacman -S --noconfirm grub os-prober
+if ! (($UEFI)); then
+  pacman -S --noconfirm efibootmgr
   grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
 else
   lsblk
@@ -50,13 +50,13 @@ passwd $USER_NAME
 touch /etc/hostname
 echo $USER_NAME >> /etc/hostname
 touch /etc/hosts
-echo "127.0.0.1 localhost" >> /ect/hosts
-echo "::1 localhost" >> /ect/hosts
+echo "127.0.0.1 localhost" >> /etc/hosts
+echo "::1 localhost" >> /etc/hosts
 
-pacman -S --no-confirm dhcpcd dhcpcd-openrc
+pacman -S --noconfirm dhcpcd dhcpcd-openrc
 rc-update add dhcpcd
 
-pacman -S --no-confirm artix-archlinux-support
+pacman -S --noconfirm artix-archlinux-support
 echo "
 [extra]
 Include = /etc/pacman.d/mirrorlist-arch
@@ -64,7 +64,7 @@ Include = /etc/pacman.d/mirrorlist-arch
 [multilib]
 Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
 
-pacman -S --no-confirm python
+pacman -S --noconfirm python git
 
 pacman -Syu
 

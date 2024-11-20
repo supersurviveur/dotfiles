@@ -9,15 +9,15 @@ from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove, remove_line_aft
 def startup():
     if os.system("yay --version > /dev/null 2>&1"):
         os.system(
-            "sudo pacman -S --no-confirm --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
+            "sudo pacman -S --noconfirm --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
         )
 
     if os.system("rustup --version > /dev/null 2>&1"):
         os.system(
-            "sudo pacman -S --needed --no-confirm rustup && rustup default stable"
+            "sudo pacman -S --needed --noconfirm rustup && rustup default stable"
         )
 
-    os.system("sudo pacman -S --needed --no-confirm npm")
+    os.system("sudo pacman -S --needed --noconfirm npm")
 
 
 @install(
@@ -256,10 +256,10 @@ def install_packages():
     # Install packages
     if PACMAN:
         print("Installing pacman packages")
-        os.system(f"sudo pacman -S --needed --no-confirm {" ".join(PACMAN)}")
+        os.system(f"sudo pacman -S --needed --noconfirm {" ".join(PACMAN)}")
     if YAY:
         print("Installing yay packages")
-        os.system(f"yay -S --needed --no-confirm {" ".join(YAY)}")
+        os.system(f"yay -S --needed --noconfirm {" ".join(YAY)}")
     if NPM:
         print("Installing npm packages")
         os.system(f"sudo npm install -g {" ".join(NPM)}")

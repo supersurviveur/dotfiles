@@ -34,7 +34,7 @@ loadkeys $KEYS
 mount /dev/disk/by-label/ROOT /mnt
 mkdir /mnt/boot
 mkdir /mnt/home
-if $UEFI; then
+if ! (($UEFI)); then
   mkdir /mnt/boot/efi
   mount /dev/disk/by-label/ESP /mnt/boot/efi
 fi
