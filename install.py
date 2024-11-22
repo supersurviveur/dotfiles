@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from install_.configs import CARGO, NPM, PACMAN, YAY, install, launch_install
 from install_.options import ask_yes_no
@@ -7,15 +8,14 @@ from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove, remove_line_aft
 
 @install("bootstrap")
 def startup():
+    os.system("sudo pacman -S --noconfirm --needed git base-devel")
     if os.system("yay --version > /dev/null 2>&1"):
         os.system(
-            "sudo pacman -S --noconfirm --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
+            "git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
         )
 
     if os.system("rustup --version > /dev/null 2>&1"):
-        os.system(
-            "sudo pacman -S --needed --noconfirm rustup && rustup default stable"
-        )
+        os.system("sudo pacman -S --needed --noconfirm rustup && rustup default stable")
 
     os.system("sudo pacman -S --needed --noconfirm npm")
 
@@ -51,6 +51,12 @@ def startup():
         "cpupower",
         "mesa",
         "mesa-utils",
+        "ttf-meslo-nerd",
+        "zsh",
+        "zsh-syntax-highlighting",
+        "zsh-autosuggestions",
+        "alacritty",
+        "ttf-meslo-nerd",
     ],
     yay=[
         "xdg-desktop-portal-wlr-artix",
@@ -69,14 +75,20 @@ def install_default():
     cpy("script/eco+.sh", HOME + "/script/eco+.sh")
     cpy("script/bloat.sh", HOME + "/script/bloat.sh")
     cpy("wallpaper", HOME + "/wallpaper")
+    os.makedirs(HOME + "/.logs", exist_ok=True)
 
+    os.makedirs(HOME + "/.zsh", exist_ok=True)
+    if not os.path.exists(HOME + "/.zsh/powerlevel10k"):
+        os.system(
+            f"git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git {HOME}/.zsh/powerlevel10k"
+        )
 
-@install("zsh", pacman=["zsh", "zsh-syntax-highlighting", "zsh-autosuggestions"])
-def install_zshrc():
     cpy(".zshrc", HOME + "/.zshrc")
     cpy(".zshenv", HOME + "/.zshenv")
     cpy(".zprofile", HOME + "/.zprofile")
     cpy(".p10k.zsh", HOME + "/.p10k.zsh")
+
+    cpy(".config/alacritty.toml", CONFIG_PATH + "alacritty.toml")
 
 
 def no_dmenu():
@@ -156,11 +168,6 @@ def install_rclone(rclone_client_id, rclone_client_secret, rclone_token):
     os.system("sudo rc-update add custom-rclone")
 
 
-@install("alacritty", pacman=["alacritty", "ttf-meslo-nerd"])
-def install_alacritty():
-    cpy(".config/alacritty.toml", CONFIG_PATH + "alacritty.toml")
-
-
 @install("vscode", yay=["visual-studio-code-bin"])
 def install_vscode():
     cpy(".config/code-flags.conf", CONFIG_PATH + "code-flags.conf")
@@ -218,6 +225,10 @@ def install_helix(copilot_token):
         CONFIG_PATH + "helix/languages.toml",
         lambda txt: txt.replace("COPILOT_KEY", copilot_token),
     )
+    if os.system("hx --version > /dev/null 2>&1"):
+        os.system(
+            "git clone https://github.com/supersurviveur/helix.git && cd helix && git checkout personal && cargo install --path helix-term --locked"
+        )
 
 
 @install(
@@ -268,9 +279,15 @@ def install_packages():
         os.system(f"cargo install {" ".join(CARGO)}")
 
 
+def post_install():
+    if "zsh" not in os.environ["SHELL"]:
+        os.system("chsh -s /")
+
+
 def main():
     launch_install()
 
+    post_install()
     if ask_yes_no("Reboot now ?", False):
         os.system("sudo reboot")
 

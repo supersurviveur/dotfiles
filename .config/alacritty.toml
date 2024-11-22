@@ -57,7 +57,7 @@ white =  '#fff1f3'
 size = 11.0
 
 [font.normal]
-family = "MesloLGS NF"
+family = "MesloLGS Nerd Font"
 
 [scrolling]
 history = 1000

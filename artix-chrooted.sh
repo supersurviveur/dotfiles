@@ -64,9 +64,9 @@ Include = /etc/pacman.d/mirrorlist-arch
 [multilib]
 Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
 
-pacman -S --noconfirm python git
-
 pacman -Syu
+
+pacman -S --noconfirm python git
 
 exit
 

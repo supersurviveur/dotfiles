@@ -9,12 +9,10 @@ BASIC = Options()
 # TODO what is needed here ?
 
 LAPTOP = Options()
-LAPTOP.zsh = True
 LAPTOP.sway = True
 LAPTOP.waybar = True
 LAPTOP.rclone = True
 LAPTOP.zathura = True
-LAPTOP.alacritty = True
 LAPTOP.vscode = True
 LAPTOP.zoxide = True
 LAPTOP.access_point = True
