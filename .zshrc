@@ -78,6 +78,15 @@ hx () {
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Alacritty\007"
 	return $exit_code
 }
+wtyp () {
+	typst watch $@&
+	local pid=$!
+	local name=$1
+	local PDF=$(echo ${name/typ/pdf})
+	echo $PDF
+	zathura $PDF
+	kill $pid
+}
 
 #env
 export XKB_DEFAULT_LAYOUT=fr
