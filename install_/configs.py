@@ -57,8 +57,26 @@ def sway_sensibility():
     edit(HOME + "/.zshrc", lambda txt: txt + "\nexport WLR_NO_HARDWARE_CURSORS=1")
 
 
+def sway_outputs():
+    edit(
+        CONFIG_PATH + "sway/config",
+        lambda txt: txt + "\noutput HDMI-A-1 position 0 0 mode 1920x1080@74.973Hz\noutput DP-1 position 1920 0 mode 1920x1080@74.973Hz\nworkspace 1 output HDMI-A-1\nworkspace 2 output DP-1"
+    )
+
+    def dmenu(txt):
+        start,end = txt.split("dmenu-wl_run")
+        end = "\n".join([end.split("\n")[0]+ " -m HDMI-A-1", *end.split("\n")[1:]])
+        return start + "dmenu-wl_run" + end
+
+    edit(
+        CONFIG_PATH + "sway/config",
+        dmenu
+    )
+
+
 PC.custom_funcs.append(waybar_temperature)
 PC.custom_funcs.append(sway_sensibility)
+PC.custom_funcs.append(sway_outputs)
 
 PC.gammastep = False
 PC.asusnumpad = False
