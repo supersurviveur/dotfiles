@@ -69,6 +69,8 @@ bindkey '\e[1;5A' sudo-previous
 # alias
 alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
+alias cd="z"
+alias cat="bat"
 alias bloat="~/script/bloat.sh && exit"
 alias ap="~/script/ap.sh"
 hx () {
@@ -117,3 +119,5 @@ if [[ $TERM = "alacritty" ]]; then # Load modules only in alacritty, not in TTY
 	source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fi
+
+eval "$(atuin init zsh)"

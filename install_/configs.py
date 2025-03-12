@@ -23,7 +23,9 @@ LAPTOP.asusnumpad = True
 LAPTOP.dmenu = True
 LAPTOP.bluetooth = True
 LAPTOP.eza = True
+LAPTOP.bat = True
 LAPTOP.impala = True
+LAPTOP.atuin = True
 LAPTOP.__setattr__("rfkill service to unblock wifi and bluetooth cards", True)
 LAPTOP.__setattr__("enable numlock at startup", False)
 LAPTOP.add_specific("waybar", "battery", "y")

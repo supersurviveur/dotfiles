@@ -30,3 +30,4 @@ inherits = "monokai_pro"
 "punctuation.delimiter.rust" = "red"
 
 "variable.builtin.self" = { fg = "base7", modifiers = ["italic"] }
+"label" = { fg = "yellow" }

@@ -35,6 +35,9 @@ def startup():
         "pipewire-pulse",
         "pipewire",
         "wireplumber",
+        "pipewire-pulse-openrc",
+        "pipewire-openrc",
+        "wireplumber-openrc",
         "sway",
         "swaybg",
         "zenity",
@@ -90,6 +93,10 @@ def install_default():
 
     cpy(".config/alacritty.toml", CONFIG_PATH + "alacritty.toml")
 
+    os.system("rc-update add pipewire --user")
+    os.system("rc-update add pipewire-pulse --user")
+    os.system("rc-update add wireplumber --user")
+
 
 def no_dmenu():
     remove(CONFIG_PATH + "sway/config", "dmenu")
@@ -102,9 +109,22 @@ def install_dmenu(): ...
 def no_eza():
     remove(HOME + "/.zshrc", "eza")
 
-
 @install("eza", pacman=["eza"], else_func=no_eza)
 def install_eza(): ...
+
+
+def no_bat():
+    remove(HOME + "/.zshrc", "bat")
+
+@install("bat", pacman=["bat"], else_func=no_bat)
+def install_bat(): ...
+
+def no_atuin():
+    remove(HOME + "/.zshrc", "atuin")
+
+@install("atuin", pacman=["atuin"], else_func=no_atuin)
+def install_atuin():
+    cpy(".config/atuin", CONFIG_PATH + "atuin")
 
 
 def no_impala():
@@ -175,9 +195,10 @@ def install_vscode():
 
 def no_zoxide():
     remove(HOME + "/.zshrc", "zoxide")
+    remove(HOME + "/.zshrc", "alias cd")
 
 
-@install("zoxide", pacman=["zoxide"], else_func="zoxide")
+@install("zoxide", pacman=["zoxide"], else_func=no_zoxide)
 def install_zoxide():
     cpy(".config/.zoxide", CONFIG_PATH + ".zoxide")
 

@@ -8,6 +8,7 @@ color-modes = true
 bufferline = "multiple"
 preview-completion-insert = false
 completion-replace = true
+continue-comments = true
 
 [editor.lsp]
 display-inlay-hints = true
@@ -42,9 +43,9 @@ other-lines = "error"
 "C-h" = "toggle_comments"
 "C-c" = ":clipboard-yank"
 "C-x" = [":clipboard-yank", "delete_selection"]
-"C-v" = ":clipboard-paste-after"
+"C-v" = ":clipboard-paste-before"
 "y" = ":clipboard-yank"
-"p" = ":clipboard-paste-after"
+"p" = ":clipboard-paste-before"
 
 # custom movements and key swaps
 "n" = "move_char_right"
@@ -54,8 +55,8 @@ other-lines = "error"
 
 "l" = "replace"
 "j" = "select_regex"
-"k" = "search_next"
-"K" = "search_prev"
+"'" = "search_next"
+"?" = "search_prev"
 
 "C-d" = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
 "tab" = "indent"
@@ -70,9 +71,9 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 "C-h" = "toggle_comments"
 "C-c" = ":clipboard-yank"
 "C-x" = [":clipboard-yank", "delete_selection"]
-"C-v" = ":clipboard-paste-after"
+"C-v" = ":clipboard-paste-before"
 "y" = ":clipboard-yank"
-"p" = ":clipboard-paste-after"
+"p" = ":clipboard-paste-before"
 
 # custom movements and key swaps
 "n" = "move_char_right"
@@ -82,8 +83,8 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 
 "l" = "replace"
 "j" = "select_regex"
-"k" = "extend_search_next"
-"K" = "extend_search_prev"
+"'" = "search_next"
+"?" = "search_prev"
 
 "C-d" = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
 "tab" = "indent"
@@ -97,7 +98,7 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 "C-h" = "toggle_comments"
 "C-c" = ":clipboard-yank"
 "C-x" = [":clipboard-yank", "delete_selection"]
-"C-v" = ":clipboard-paste-after"
+"C-v" = ":clipboard-paste-before"
 
 "C-space" =  "completion"
 
