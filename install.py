@@ -109,6 +109,7 @@ def install_dmenu(): ...
 def no_eza():
     remove(HOME + "/.zshrc", "eza")
 
+
 @install("eza", pacman=["eza"], else_func=no_eza)
 def install_eza(): ...
 
@@ -116,11 +117,14 @@ def install_eza(): ...
 def no_bat():
     remove(HOME + "/.zshrc", "bat")
 
+
 @install("bat", pacman=["bat"], else_func=no_bat)
 def install_bat(): ...
 
+
 def no_atuin():
     remove(HOME + "/.zshrc", "atuin")
+
 
 @install("atuin", pacman=["atuin"], else_func=no_atuin)
 def install_atuin():
@@ -288,16 +292,16 @@ def install_packages():
     # Install packages
     if PACMAN:
         print("Installing pacman packages")
-        os.system(f"sudo pacman -S --needed --noconfirm {" ".join(PACMAN)}")
+        os.system(f"sudo pacman -S --needed --noconfirm {' '.join(PACMAN)}")
     if YAY:
         print("Installing yay packages")
-        os.system(f"yay -S --needed --noconfirm {" ".join(YAY)}")
+        os.system(f"yay -S --needed --noconfirm {' '.join(YAY)}")
     if NPM:
         print("Installing npm packages")
-        os.system(f"sudo npm install -g {" ".join(NPM)}")
+        os.system(f"sudo npm install -g {' '.join(NPM)}")
     if CARGO:
         print("Installing cargo packages")
-        os.system(f"cargo install {" ".join(CARGO)}")
+        os.system(f"cargo install {' '.join(CARGO)}")
 
 
 def post_install():
