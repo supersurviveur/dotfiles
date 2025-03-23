@@ -54,10 +54,14 @@ white =  '#fff1f3'
 # foreground = "#eeeeee"
 
 [font]
-size = 11.0
+size = 11
 
 [font.normal]
-family = "MesloLGS Nerd Font"
+# family = "MesloLGS Nerd Font"
+# family = "cozettevector"
+# family = "tamzenForPowerline"
+# family = "misc tamsyn"
+family = "cozette"
 
 [scrolling]
 history = 1000

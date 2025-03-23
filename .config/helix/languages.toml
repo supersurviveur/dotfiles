@@ -124,7 +124,6 @@ source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-scss", rev
 [[language]]
 name = "toml"
 language-servers = [
-  "gpt",
 ]
 
 [[language]]

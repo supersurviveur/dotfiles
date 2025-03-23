@@ -81,7 +81,7 @@ input * xkb_switch_layout next
 #
     $bindsym $mod+Shift+KP_add output * dpms on
     $bindsym $mod+Shift+KP_Subtract output * dpms off
-    $bindsym $mod+d exec dmenu-wl_run -sb "#b4d273" -sf "#2e2e2e" -nb "#2e2e2e" -h 25 -i -fn "Monocraft"
+    $bindsym $mod+d exec dmenu-wl_run -sb "#b4d273" -sf "#2e2e2e" -nb "#2e2e2e" -h 22 -i -fn "Cozette 11"
 # Basics:
 #
     # Start a terminal
@@ -250,8 +250,8 @@ $bindsym Shift+S+$mod exec grimshot copy area
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
 
-# font pango:GohuFontuni14NerdFont Regular 11
-font pango:Monocraft Regular 10
+font pango:Cozette Regular 11
+# font pango:Monocraft Regular 10
 
 # Status Bar:
 #
