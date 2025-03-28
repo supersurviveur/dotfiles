@@ -56,9 +56,10 @@
 		"tooltip": false
 	},
 	"network": {
-		"interface": "wlan0",
+		"interface": "*0",
 		"interval": 15,
-		"format": "({signalStrength}% at {essid}) {ipaddr}",
+		"format-wifi": "({signalStrength}% at {essid}) {ipaddr}",
+		"format-ethernet": "({ifname}) {ipaddr}",
 		"format-disconnected": "NO CONNECTION",
 		"on-click": "process=$(pidof impala) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - impala' -e impala& else swaymsg '[title=\"Alacritty - impala\"]' focus; fi",
 		"tooltip": false

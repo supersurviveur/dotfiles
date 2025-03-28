@@ -81,7 +81,7 @@ input * xkb_switch_layout next
 #
     $bindsym $mod+Shift+KP_add output * dpms on
     $bindsym $mod+Shift+KP_Subtract output * dpms off
-    $bindsym $mod+d exec dmenu-wl_run -sb "#b4d273" -sf "#2e2e2e" -nb "#2e2e2e" -h 22 -i -fn "Cozette 11"
+    $bindsym $mod+d exec dmenu-wl_run -sb "#b4d273" -sf "#2e2e2e" -nb "#2e2e2e" -h 28 -i -fn "Cozette 22"
 # Basics:
 #
     # Start a terminal
