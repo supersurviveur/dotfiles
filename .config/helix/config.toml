@@ -11,6 +11,9 @@ completion-replace = true
 continue-comments = true
 line-number = "relative"
 
+[editor.soft-wrap]
+enable = true
+
 [editor.lsp]
 display-inlay-hints = true
 display-messages = true
@@ -27,7 +30,7 @@ hidden = false
 render = true
 
 [editor.statusline]
-left = ["mode", "spinner", "version-control", "spacer", "diagnostics"]
+left = ["mode", "spinner", "version-control", "spacer", "workspace-diagnostics"]
 center = ["file-name"]
 right = ["position", "total-line-numbers", "separator", "file-encoding", "file-line-ending", "file-type"]
 separator = "│"
@@ -64,6 +67,9 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 "'" = "search_next"
 "?" = "search_prev"
 
+"C-e" = "@/```<ret><S-n>rghv<C-'><A-minus>sgl<esc><A-|>run-rscript<ret>"
+"C-'" = "extend_search_next"
+
 [keys.select]
 "S-A-e" = ":fmt"
 "C-h" = "toggle_comments"
@@ -89,6 +95,8 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 "'" = "search_next"
 "?" = "search_prev"
 
+"C-'" = "extend_search_next"
+
 [keys.insert]
 "S-A-e" = ":fmt"
 "C-h" = "toggle_comments"
@@ -103,10 +111,12 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 [keys.normal.g]
 "s" = "move_line_up"
 "r" = "move_line_down"
+"R" = "goto_reference"
 
 [keys.select.g]
 "s" = "move_line_up"
 "r" = "move_line_down"
+"R" = "goto_reference"
 
 [keys.normal."é"]
 "c" = "align_view_center"

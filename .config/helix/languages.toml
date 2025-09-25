@@ -1,7 +1,8 @@
-use-grammars = { only = [ "rust", "c", "cpp", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst", "bash", "sway", "sql", "json", "make", "python" ] }
+use-grammars = { only = [ "rust", "c", "cpp", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst", "bash", "sway", "sql", "json", "make", "python", "git-rebase", "git-commit", "git-config", "git-ignore", "vhdl", "r", "rmarkdown", "scala" ] }
 
 [language-server]
 emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
+metals = { command = "metals" }
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
@@ -39,8 +40,12 @@ provideFormatter = true
 command = "cssmodules-language-server"
 args = []
 
-[language-server.rust-analyzer]
-config = { cargo = { features = "all" } }
+[language-server.rust-analyzer.config]
+check.command = "clippy"
+cargo.features = "all"
+
+[language-server.rust-analyzer.diagnostics.experimental]
+enable = true
 
 [language-server.gpt]
 command = "helix-gpt"
@@ -89,6 +94,11 @@ indent = { tab-width = 4, unit = "    " }
 language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
 
 [[language]]
+name = "javascript"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+
+[[language]]
 name = "tsx"
 indent = { tab-width = 4, unit = "    " }
 language-servers = [ "typescript-language-server", "eslint", "cssmodules", "emmet-ls" ]
@@ -130,8 +140,6 @@ language-servers = [
 name = "ocaml"
 indent = { tab-width = 2, unit = "    " }
 formatter = { command = "ocamlformat", args=["-", "--impl", "--enable-outside-detected-project", "--profile=janestreet", "--if-then-else=k-r"] }
-# formatter = { command = "ocamlformat", args=["-", "--impl", "--enable-outside-detected-project", "--profile=janestreet", "--max-indent=4", "--let-binding-indent=4",
-# "--cases-exp-indent=4", "--extension-indent=4", "--function-indent=4", "--type-decl-indent=4", "--stritem-extension-indent=4", "--if-then-else=k-r"] }
 
 
 [[language]]
@@ -147,3 +155,13 @@ auto-format = false
 name = "typst"
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = "typstyle" }
+
+[[language]]
+name = "vhdl"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "vhdlfmt", args = [ "%{buffer_name}" ] }
+
+[[language]]
+name = "scala"
+indent = { tab-width = 4, unit = "    " }
+language-servers = [ "metals" ]

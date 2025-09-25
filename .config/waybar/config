@@ -8,6 +8,7 @@
 	],
 	"modules-right": [
 		"custom/spotify",
+		"custom/vpn",
 		"network",
 		"custom/separator",
 		"pulseaudio",
@@ -56,7 +57,7 @@
 		"tooltip": false
 	},
 	"network": {
-		"interface": "*0",
+		"interface": "wlan0",
 		"interval": 15,
 		"format-wifi": "({signalStrength}% at {essid}) {ipaddr}",
 		"format-ethernet": "({ifname}) {ipaddr}",
@@ -89,6 +90,14 @@
 		"exec-if": "pgrep spotify",
 		"escape": true,
 		"on-click": "swaymsg '[class=Spotify]' focus"
+	},
+	"custom/vpn": {
+		"format": " <span fgcolor='#f38d70'> {}</span> <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
+		"interval": 30,
+		"return-type": "json",
+		"exec": "~/.config/waybar/modules/vpn.sh",
+		"exec-if": "pgrep openvpn || pgrep openconnect",
+		"escape": true
 	},
 	"disk": {
 		"interval": 30,
