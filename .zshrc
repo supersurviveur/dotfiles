@@ -122,7 +122,7 @@ export PATH="$PATH:~/.local/share/coursier/bin"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/"
 
 # espup
-source ~/export-esp.sh
+source ~/script/export-esp.sh
 
 # Vivado
 if [ -e /opt/Xilinx/ ]; then
