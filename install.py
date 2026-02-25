@@ -241,15 +241,10 @@ def install_bluetooth(): ...
 
 @install(
     "helix",
-    specific_options=(("copilot_token", "Enter your copilot_token"),),
 )
-def install_helix(copilot_token):
+def install_helix():
     cpy(".config/helix", CONFIG_PATH + "helix")
     cpy(".dprint.json", HOME + "/.dprint.json")
-    edit(
-        CONFIG_PATH + "helix/languages.toml",
-        lambda txt: txt.replace("COPILOT_KEY", copilot_token),
-    )
     if os.system("hx --version > /dev/null 2>&1"):
         os.system(
             "git clone https://github.com/supersurviveur/helix.git && cd helix && git checkout personal && cargo install --path helix-term --locked"

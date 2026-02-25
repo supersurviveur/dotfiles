@@ -80,15 +80,8 @@ hx () {
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Alacritty\007"
 	return $exit_code
 }
-wtyp () {
-	typst watch $@&
-	local pid=$!
-	local name=$1
-	local PDF=$(echo ${name/typ/pdf})
-	echo $PDF
-	zathura $PDF
-	kill $pid
-}
+alias wtyp="typst watch --open zathura $@"
+alias copilot="copilot --model gpt-5-mini"
 
 #env
 export XKB_DEFAULT_LAYOUT=fr
@@ -102,8 +95,11 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 export GTK_THEME=Adwaita:dark
+export QT_STYLE_OVERRIDE=Adwaita-Dark
 export GDK_BACKEND=wayland
 export EDITOR=hx
+
+export HELIX_RUNTIME=~/code/helix/runtime
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -121,3 +117,14 @@ if [[ $TERM = "alacritty" ]]; then # Load modules only in alacritty, not in TTY
 fi
 
 eval "$(atuin init zsh)"
+
+export PATH="$PATH:~/.local/share/coursier/bin"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/"
+
+# espup
+source ~/export-esp.sh
+
+# Vivado
+if [ -e /opt/Xilinx/ ]; then
+	source /opt/Xilinx/2025.1/Vivado/settings64.sh
+fi

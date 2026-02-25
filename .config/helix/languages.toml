@@ -1,4 +1,4 @@
-use-grammars = { only = [ "rust", "c", "cpp", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst", "bash", "sway", "sql", "json", "make", "python", "git-rebase", "git-commit", "git-config", "git-ignore", "vhdl", "r", "rmarkdown", "scala" ] }
+use-grammars = { only = [ "rust", "c", "cpp", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst", "bash", "sway", "sql", "json", "make", "python", "git-rebase", "git-commit", "git-config", "git-ignore", "vhdl", "r", "rmarkdown", "scala", "dockerfile", "dart", "kotlin", "hurl", "gas", "verilog", "wgsl", "latex", "haskell", "ld", "prolog", "spade", "tsq", "just" ] }
 
 [language-server]
 emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
@@ -41,15 +41,12 @@ command = "cssmodules-language-server"
 args = []
 
 [language-server.rust-analyzer.config]
+rustc.source = "discover"
 check.command = "clippy"
 cargo.features = "all"
 
 [language-server.rust-analyzer.diagnostics.experimental]
 enable = true
-
-[language-server.gpt]
-command = "helix-gpt"
-args = ["--handler", "copilot", "--copilotApiKey", "COPILOT_KEY"]
 
 [language-server.basedpyright]
 except-features = ["format", "code-action"]
@@ -82,7 +79,6 @@ select = [
 [language-server.clangd.config]
 clang-tidy = true
 completion = { enable = true, detailedLabel = true }
-# fallbackFlags = []
 
 [[language]]
 name = "python"
@@ -165,3 +161,31 @@ formatter = { command = "vhdlfmt", args = [ "%{buffer_name}" ] }
 name = "scala"
 indent = { tab-width = 4, unit = "    " }
 language-servers = [ "metals" ]
+
+[[language]]
+name = "dart"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "kotlin"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "/usr/lib/jvm/java-25-openjdk/bin/java", args = [ "-jar", "~/installation/ktfmt-0.59-with-dependencies.jar", "--kotlinlang-style", "-" ] }
+
+[[language]]
+name = "wgsl"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "wgslfmt" }
+
+[[language]]
+name = "haskell"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "fourmolu", args = [ "--stdin-input-file", "%{buffer_name}" ] }
+
+[[language]]
+name = "prolog"
+indent = { tab-width = 4, unit = "    " }
+file-types = ["pl"]
+
+[[grammar]]
+name = "spade"
+source = { git = "https://gitlab.com/spade-lang/tree-sitter-spade", rev = "6569cd11cc9362e277845ce24111735059b145ee" }

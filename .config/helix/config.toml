@@ -10,6 +10,7 @@ preview-completion-insert = false
 completion-replace = true
 continue-comments = true
 line-number = "relative"
+end-of-line-diagnostics = "disable"
 
 [editor.soft-wrap]
 enable = true
@@ -37,6 +38,14 @@ separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+
+[editor.whitespace.render]
+nbsp = "all"
+nnbsp = "all"
+
+[editor.whitespace.characters]
+nbsp = "␣"
+nnbsp = "␣"
 
 [editor.inline-diagnostics]
 cursor-line = "hint"
@@ -96,6 +105,10 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 "?" = "search_prev"
 
 "C-'" = "extend_search_next"
+
+"p" = "replace_with_yanked"
+[keys.select.space]
+"p" = "replace_selections_with_clipboard"
 
 [keys.insert]
 "S-A-e" = ":fmt"
