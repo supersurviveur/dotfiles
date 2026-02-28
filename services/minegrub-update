@@ -1,0 +1,15 @@
+#!/sbin/openrc-run
+
+name="minegrub-update"
+description="minegrub theme splash update service"
+command="/usr/bin/python3"
+command_args="/boot/grub/themes/minegrub/update_theme.py"
+command_background=true
+
+output_log="/home/julien/.logs/minegrub-update.log"
+error_log="/home/julien/.logs/minegrub-update.log"
+pidfile="/run/${RC_SVCNAME}.pid"
+
+depend() {
+    after hibernate
+}

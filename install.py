@@ -198,6 +198,13 @@ def install_vscode():
     cpy(".config/code-flags.conf", CONFIG_PATH + "code-flags.conf")
 
 
+@install("minegrub")
+def install_minegrub():
+    os.system("sudo cp services/minegrub-update /etc/init.d/minegrub-update")
+    os.system("sudo chmod +x /etc/init.d/minegrub-update")
+    os.system("sudo rc-update add minegrub-update")
+
+
 def no_zoxide():
     remove(HOME + "/.zshrc", "zoxide")
     remove(HOME + "/.zshrc", "alias cd")
