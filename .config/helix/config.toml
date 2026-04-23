@@ -32,7 +32,7 @@ render = true
 
 [editor.statusline]
 left = ["mode", "spinner", "version-control", "spacer", "workspace-diagnostics"]
-center = ["file-name"]
+center = ["file-name", "read-only-indicator"]
 right = ["position", "total-line-numbers", "separator", "file-encoding", "file-line-ending", "file-type"]
 separator = "│"
 mode.normal = "NORMAL"
@@ -119,7 +119,7 @@ A-up = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
 
 "A-s" = "normal_mode"
 
-"C-space" =  "completion"
+"C-space" = "completion"
 
 [keys.normal.g]
 "s" = "move_line_up"

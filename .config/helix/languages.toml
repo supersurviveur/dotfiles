@@ -1,7 +1,7 @@
-use-grammars = { only = [ "rust", "c", "cpp", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst", "bash", "sway", "sql", "json", "make", "python", "git-rebase", "git-commit", "git-config", "git-ignore", "vhdl", "r", "rmarkdown", "scala", "dockerfile", "dart", "kotlin", "hurl", "gas", "verilog", "wgsl", "latex", "haskell", "ld", "prolog", "spade", "tsq", "just" ] }
+use-grammars = { only = ["rust", "c", "cpp", "ocaml", "toml", "markdown", "javascript", "jsx", "typescript", "tsx", "css", "scss", "html", "typst", "bash", "sway", "sql", "json", "make", "python", "git-rebase", "git-commit", "git-config", "git-ignore", "scala", "dockerfile", "dart", "kotlin", "hurl", "gas", "verilog", "wgsl", "ld", "spade", "tsq", "just"] }
 
 [language-server]
-emmet-ls = { command = "emmet-ls", args = [ "--stdio" ]}
+emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
 metals = { command = "metals" }
 
 [language-server.eslint]
@@ -75,29 +75,28 @@ select = [
   "I",
 ]
 
-
 [language-server.clangd.config]
 clang-tidy = true
 completion = { enable = true, detailedLabel = true }
 
 [[language]]
 name = "python"
-language-servers = [ "basedpyright", "ruff" ]
+language-servers = ["basedpyright", "ruff"]
 
 [[language]]
 name = "typescript"
 indent = { tab-width = 4, unit = "    " }
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
 
 [[language]]
 name = "javascript"
 indent = { tab-width = 4, unit = "    " }
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+language-servers = ["typescript-language-server", "eslint", "emmet-ls"]
 
 [[language]]
 name = "tsx"
 indent = { tab-width = 4, unit = "    " }
-language-servers = [ "typescript-language-server", "eslint", "cssmodules", "emmet-ls" ]
+language-servers = ["typescript-language-server", "eslint", "cssmodules", "emmet-ls"]
 auto-format = false
 
 [[language]]
@@ -110,17 +109,17 @@ auto-format = false
 name = "c"
 indent = { tab-width = 4, unit = "    " }
 file-types = ["h", "c"]
-formatter = { command = "clang-format", args=['-style={BasedOnStyle: llvm, IndentWidth: 4}'] }
+formatter = { command = "clang-format", args = ['-style={BasedOnStyle: llvm, IndentWidth: 4}'] }
 
 [[language]]
 name = "cpp"
 indent = { tab-width = 4, unit = "    " }
-formatter = { command = "clang-format", args=['-style={BasedOnStyle: llvm, IndentWidth: 4}'] }
+formatter = { command = "clang-format", args = ['-style={BasedOnStyle: llvm, IndentWidth: 4}'] }
 
 [[language]]
 name = "scss"
 indent = { tab-width = 4, unit = "    " }
-language-servers = [ "vscode-css-language-server", "cssmodules" ]
+language-servers = ["vscode-css-language-server", "cssmodules"]
 auto-format = false
 
 [[grammar]]
@@ -129,18 +128,17 @@ source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-scss", rev
 
 [[language]]
 name = "toml"
-language-servers = [
-]
+language-servers = []
+formatter = { command = "dprint", args = ["fmt", "--stdin", "toml"] }
 
 [[language]]
 name = "ocaml"
 indent = { tab-width = 2, unit = "    " }
-formatter = { command = "ocamlformat", args=["-", "--impl", "--enable-outside-detected-project", "--profile=janestreet", "--if-then-else=k-r"] }
-
+formatter = { command = "ocamlformat", args = ["-", "--impl", "--enable-outside-detected-project", "--profile=janestreet", "--if-then-else=k-r"] }
 
 [[language]]
 name = "markdown"
-formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
 [[language]]
 name = "json"
@@ -153,14 +151,9 @@ indent = { tab-width = 4, unit = "    " }
 formatter = { command = "typstyle" }
 
 [[language]]
-name = "vhdl"
-indent = { tab-width = 4, unit = "    " }
-formatter = { command = "vhdlfmt", args = [ "%{buffer_name}" ] }
-
-[[language]]
 name = "scala"
 indent = { tab-width = 4, unit = "    " }
-language-servers = [ "metals" ]
+language-servers = ["metals"]
 
 [[language]]
 name = "dart"
@@ -169,22 +162,12 @@ indent = { tab-width = 4, unit = "    " }
 [[language]]
 name = "kotlin"
 indent = { tab-width = 4, unit = "    " }
-formatter = { command = "/usr/lib/jvm/java-25-openjdk/bin/java", args = [ "-jar", "~/installation/ktfmt-0.59-with-dependencies.jar", "--kotlinlang-style", "-" ] }
+formatter = { command = "/usr/lib/jvm/java-25-openjdk/bin/java", args = ["-jar", "~/installation/ktfmt-0.59-with-dependencies.jar", "--kotlinlang-style", "-"] }
 
 [[language]]
 name = "wgsl"
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = "wgslfmt" }
-
-[[language]]
-name = "haskell"
-indent = { tab-width = 4, unit = "    " }
-formatter = { command = "fourmolu", args = [ "--stdin-input-file", "%{buffer_name}" ] }
-
-[[language]]
-name = "prolog"
-indent = { tab-width = 4, unit = "    " }
-file-types = ["pl"]
 
 [[grammar]]
 name = "spade"
