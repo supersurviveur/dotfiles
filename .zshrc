@@ -71,7 +71,6 @@ alias sway="~/script/init-sway"
 alias ls="eza --icons auto"
 alias cd="z"
 alias cat="bat"
-alias bloat="~/script/bloat.sh && exit"
 alias ap="~/script/ap.sh"
 hx () {
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Helix - ${$(pwd)##*/}\007"

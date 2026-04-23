@@ -76,8 +76,9 @@ def install_default():
     cpy("script/wallpapers.sh", HOME + "/script/wallpapers.sh")
     cpy("script/eco.sh", HOME + "/script/eco.sh")
     cpy("script/eco+.sh", HOME + "/script/eco+.sh")
-    cpy("script/bloat.sh", HOME + "/script/bloat.sh")
     cpy("script/export-esp.sh", HOME + "/script/export-esp.sh")
+    cpy("script/switch-bépo.sh", HOME + "/script/switch-bépo.sh")
+    cpy("script/switch-ergol.sh", HOME + "/script/switch-ergol.sh")
     cpy("wallpaper", HOME + "/wallpaper")
     os.makedirs(HOME + "/.logs", exist_ok=True)
 
