@@ -1,7 +1,6 @@
 #!/bin/python3
 
 import os
-import shutil
 
 from install_.configs import CARGO, NPM, PACMAN, YAY, install, launch_install
 from install_.options import ask_yes_no
@@ -79,8 +78,6 @@ def install_default():
     cpy("script/eco.sh", HOME + "/script/eco.sh")
     cpy("script/eco+.sh", HOME + "/script/eco+.sh")
     cpy("script/export-esp.sh", HOME + "/script/export-esp.sh")
-    cpy("script/switch-bépo.sh", HOME + "/script/switch-bépo.sh")
-    cpy("script/switch-ergol.sh", HOME + "/script/switch-ergol.sh")
     cpy("script/dmenu-run.sh", HOME + "/script/dmenu-run.sh")
     cpy("wallpaper", HOME + "/wallpaper")
     os.makedirs(HOME + "/.logs", exist_ok=True)
@@ -259,7 +256,7 @@ def install_helix():
     cpy(".dprint.json", HOME + "/.dprint.json")
     if os.system("hx --version > /dev/null 2>&1"):
         os.system(
-            "git clone https://github.com/supersurviveur/helix.git && cd helix && git checkout personal && cargo install --path helix-term --locked"
+            "git clone https://github.com/helix-editor/helix.git && cd helix && cargo install --path helix-term --locked"
         )
 
 
@@ -309,6 +306,17 @@ def install_packages():
     if CARGO:
         print("Installing cargo packages")
         os.system(f"cargo install {' '.join(CARGO)}")
+
+
+@install("ergol", pacman=["ckbcomp"])
+def install_layout():
+    os.system("sudo cp ergol.xkb_symbols /usr/share/X11/xkb/symbols/custom_ergol")
+    os.system(
+        "ckbcomp -I. ergol.xkb_symbols | sudo tee /usr/share/kbd/keymaps/custom_ergol.map > /dev/null"
+    )
+    os.system(
+        'sudo sed -i "s/keymap=\\".*\\"/keymap=\\"custom_ergol\\"/g" /etc/conf.d/keymaps'
+    )
 
 
 def post_install():

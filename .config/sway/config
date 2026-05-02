@@ -21,7 +21,7 @@ set $term alacritty
 set $menu xargs swaymsg exec --
 
 # Convert to keyscode to keep same keysbindings between layouts
-set $bindsym bindsym --to-code
+set $bindsym bindsym
 
 ### Output configuration
 #
@@ -54,21 +54,21 @@ exec ~/script/wallpapers.sh
 ### Input configuration
 #
 input type:keyboard {
-    xkb_layout "fr,fr"
-    xkb_variant "latin9,bepo"
+    xkb_layout "custom_ergol,fr,fr"
+    xkb_variant ",latin9,bepo"
     # 
 }
 input type:pointer {
-   pointer_accel 0.1
+   pointer_accel 0.3
 #   sensitivity 2.5
 }
 input type:touchpad {
    natural_scroll enabled
    accel_profile adaptive  
+   # pointer_accel 0.2
    pointer_accel 0.8
+   dwt disable
 }
-
-input * xkb_switch_layout next
 
     $bindsym $mod+Control+space input * xkb_switch_layout next
 #
@@ -81,7 +81,7 @@ input * xkb_switch_layout next
 #
     $bindsym $mod+Shift+KP_add output * dpms on
     $bindsym $mod+Shift+KP_Subtract output * dpms off
-    $bindsym $mod+d exec dmenu-wl_run -sb "#b4d273" -sf "#2e2e2e" -nb "#2e2e2e" -h 28 -i -fn "Cozette 22"
+    $bindsym $mod+d exec ~/script/dmenu-run.sh -sb "#b4d273" -sf "#2e2e2e" -nb "#2e2e2e" -h 28 -i -fn "Cozette 22"
 # Basics:
 #
     # Start a terminal

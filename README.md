@@ -73,3 +73,7 @@ Sway keybindings and config
 ### helix
 
 Custom monokai theme and configuration. The runtime dir also contains custom queries for better syntax highlighting, especially for web languages.
+
+### Layout
+
+Custom ergol layout in xkb format.
