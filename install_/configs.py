@@ -73,9 +73,9 @@ def sway_outputs():
     )
 
     def dmenu(txt):
-        start, end = txt.split("dmenu-wl_run")
+        start, end = txt.split("~/script/dmenu-run.sh")
         end = "\n".join([end.split("\n")[0] + " -m HDMI-A-1", *end.split("\n")[1:]])
-        return start + "dmenu-wl_run" + end
+        return start + "~/script/dmenu-run.sh" + end
 
     edit(CONFIG_PATH + "sway/config", dmenu)
 
