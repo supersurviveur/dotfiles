@@ -120,9 +120,6 @@ eval "$(atuin init zsh)"
 export PATH="$PATH:~/.local/share/coursier/bin"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/"
 
-# espup
-source ~/script/export-esp.sh
-
 # Vivado
 if [ -e /opt/Xilinx/ ]; then
 	source /opt/Xilinx/2025.1/Vivado/settings64.sh
