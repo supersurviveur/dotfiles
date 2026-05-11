@@ -63,6 +63,10 @@ def sway_sensibility():
     edit(HOME + "/.zshrc", lambda txt: txt + "\nexport WLR_NO_HARDWARE_CURSORS=1")
 
 
+def sway_start():
+    edit(HOME + "/script/init-sway", lambda txt: txt.replace("sway -Vd", "sway -Vd --unsupported-gpu"))
+
+
 def sway_outputs():
     edit(
         CONFIG_PATH + "sway/config",
@@ -83,6 +87,7 @@ def sway_outputs():
 PC.custom_funcs.append(waybar_temperature)
 PC.custom_funcs.append(sway_sensibility)
 PC.custom_funcs.append(sway_outputs)
+PC.custom_funcs.append(sway_start)
 
 PC.gammastep = False
 PC.asusnumpad = False
