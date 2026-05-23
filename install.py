@@ -240,6 +240,20 @@ def install_gammastep():
     cpy(".config/gammastep", CONFIG_PATH + "gammastep")
 
 
+def no_kanata():
+    remove(HOME + "/script/init", "kanata")
+    remove(HOME + "/script/exit-sway", "kanata")
+
+
+@install(
+    "kanata",
+    else_func=no_kanata,
+    yay=["kanata-bin"],
+)
+def install_kanata():
+    cpy(".config/kanata", CONFIG_PATH + "kanata")
+
+
 def no_bluetooth():
     remove(CONFIG_PATH + "waybar/config", 'bluetooth",')
 

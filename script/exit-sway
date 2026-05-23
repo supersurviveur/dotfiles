@@ -8,3 +8,5 @@ killall wallpapers.sh
 
 # Stop gammastep
 killall gammastep
+# Stop kanata
+killall kanata

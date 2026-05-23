@@ -1,0 +1,15 @@
+(defsrc
+  caps       e
+        s    d    f
+  w     x    c    v
+)
+
+(deflayer default
+  (layer-while-held navigation) e s d f w x c v
+)
+
+(deflayer navigation
+  _          up
+        left down right
+  pp    voldwn mute volu
+)
