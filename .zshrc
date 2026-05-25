@@ -124,3 +124,6 @@ export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/"
 if [ -e /opt/Xilinx/ ]; then
 	source /opt/Xilinx/2025.1/Vivado/settings64.sh
 fi
+
+# Flutter
+export PATH="$PATH:$HOME/installation/flutter/bin"
