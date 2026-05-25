@@ -158,6 +158,7 @@ language-servers = ["metals"]
 [[language]]
 name = "dart"
 indent = { tab-width = 4, unit = "    " }
+formatter = { command = "dart", args = ["format"] }
 
 [[language]]
 name = "kotlin"
