@@ -127,3 +127,8 @@ fi
 
 # Flutter
 export PATH="$PATH:$HOME/installation/flutter/bin"
+
+# Launch sway in the tty1
+if [[ $TTY = "/dev/tty1" ]]; then
+	sway
+fi
