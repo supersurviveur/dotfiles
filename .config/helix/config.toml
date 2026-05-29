@@ -11,6 +11,7 @@ completion-replace = true
 continue-comments = true
 line-number = "relative"
 end-of-line-diagnostics = "disable"
+true-color = true
 
 [editor.soft-wrap]
 enable = true
