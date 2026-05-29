@@ -109,6 +109,13 @@ input type:touchpad {
     $bindsym $mod+Shift+e exec swaynag -t warning \
         -m 'Do you really want to exit sway? This will end your Wayland session.' \
         -b 'Yes, exit sway' '~/script/exit-sway; swaymsg exit'
+    # Lock sway
+    $bindsym $mod+Shift+y exec swaylock \
+        --image $(find ~/wallpaper/fractal -type f | shuf -n 1) --hide-keyboard-layout \
+        --font Cozette --font-size 26 --indicator-radius 65 \
+        --key-hl-color a9dc76 \
+        --ring-color 058e99 --ring-clear-color fc9867 --ring-ver-color ab9df2 --ring-wrong-color fd6883 \
+        --inside-color 058e9980 --inside-clear-color fc986780 --inside-ver-color ab9df280 --inside-wrong-color fd688380
 #
 # Moving around:
 #
@@ -185,6 +192,9 @@ input type:touchpad {
 
     # Move focus to the parent container
     $bindsym $mod+a focus parent
+
+# Default layout
+workspace_layout tabbed
 #
 # Scratchpad:
 #
