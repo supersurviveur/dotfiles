@@ -56,6 +56,7 @@ exec ~/script/wallpapers.sh
 input type:keyboard {
     xkb_layout "custom_ergol,fr,fr"
     xkb_variant ",latin9,bepo"
+    xkb_numlock enabled
     # 
 }
 input type:pointer {

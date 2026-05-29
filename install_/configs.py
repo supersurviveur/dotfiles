@@ -5,42 +5,11 @@ from copy import deepcopy
 from install_.options import Options
 from install_.utils import CONFIG_PATH, HOME, cpy, edit
 
-BASIC = Options()
-# TODO what is needed here ?
-
 LAPTOP = Options()
 LAPTOP.sway = True
-LAPTOP.waybar = True
 LAPTOP.rclone = True
-LAPTOP.zathura = True
-LAPTOP.vscode = True
-LAPTOP.zoxide = True
 LAPTOP.access_point = True
-LAPTOP.helix = True
-LAPTOP.keepassxc = True
-LAPTOP.gammastep = True
-LAPTOP.asusnumpad = True
-LAPTOP.dmenu = True
-LAPTOP.bluetooth = True
-LAPTOP.eza = True
-LAPTOP.bat = True
-LAPTOP.impala = True
-LAPTOP.atuin = True
 LAPTOP.minegrub = True
-LAPTOP.ergol = True
-LAPTOP.kanata = True
-LAPTOP.__setattr__("rfkill service to unblock wifi and bluetooth cards", True)
-LAPTOP.__setattr__("enable numlock at startup", False)
-LAPTOP.add_specific("waybar", "battery", "y")
-LAPTOP.packages = False
-
-
-def ssh_key():
-    cpy(".ssh", f"{HOME}/.ssh")
-
-
-LAPTOP.custom_funcs.append(ssh_key)
-
 
 PC = deepcopy(LAPTOP)
 
@@ -57,15 +26,7 @@ def waybar_temperature():
 
 
 def sway_sensibility():
-    edit(
-        CONFIG_PATH + "sway/config",
-        lambda txt: txt.replace("pointer_accel 0.1", "pointer_accel 0.6"),
-    )
     edit(HOME + "/.zshrc", lambda txt: txt + "\nexport WLR_NO_HARDWARE_CURSORS=1")
-
-
-def sway_start():
-    edit(HOME + "/script/init-sway", lambda txt: txt.replace("sway -Vd", "sway -Vd --unsupported-gpu"))
 
 
 def sway_outputs():
@@ -77,23 +38,10 @@ def sway_outputs():
         ),
     )
 
-    def dmenu(txt):
-        start, end = txt.split("~/script/dmenu-run.sh")
-        end = "\n".join([end.split("\n")[0] + " -m HDMI-A-1", *end.split("\n")[1:]])
-        return start + "~/script/dmenu-run.sh" + end
-
-    edit(CONFIG_PATH + "sway/config", dmenu)
-
 
 PC.custom_funcs.append(waybar_temperature)
 PC.custom_funcs.append(sway_sensibility)
 PC.custom_funcs.append(sway_outputs)
-PC.custom_funcs.append(sway_start)
-
-PC.gammastep = False
-PC.asusnumpad = False
-PC.__setattr__("enable numlock at startup", True)
-PC.add_specific("waybar", "battery", "n")
 
 
 def get_config() -> Options:
@@ -124,10 +72,6 @@ options = get_config()
 
 
 funcs = []
-YAY = []
-PACMAN = []
-NPM = []
-CARGO = []
 
 
 def install(
@@ -135,20 +79,12 @@ def install(
     specific_options: tuple[tuple[str, str], ...] = (),
     dependencies=(),
     else_func=None,
-    yay=(),
-    pacman=(),
-    npm=(),
-    cargo=(),
 ):
     options.ask(name, specific_options, dependencies)
 
     def wrapper(func):
         def inner():
             if options[name]:
-                YAY.extend(yay)
-                PACMAN.extend(pacman)
-                NPM.extend(npm)
-                CARGO.extend(cargo)
                 if len(inspect.getfullargspec(func).args) >= 1:
                     func(**options.get_specific(name))
                 else:

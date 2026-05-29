@@ -15,7 +15,6 @@
 		"bluetooth",
 		"custom/separator",
 		"temperature",
-		"custom/separator",
 		"battery",
 		"custom/separator",
 		"cpu",
@@ -44,10 +43,10 @@
 		"tooltip": false
 	},
 	"battery": {
-		"format": "BAT {capacity}%",
-		"format-alt": "{time}",
-		"format-charging": "CHR {capacity}%",
-		"format-full": "FULL",
+		"format": "BAT {capacity}% <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
+		"format-alt": "{time} <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
+		"format-charging": "CHR {capacity}% <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
+		"format-full": "FULL <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
 		"interval": 15,
 		"states": {
 			"good": 80,

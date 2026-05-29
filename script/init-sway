@@ -2,6 +2,4 @@
 export XDG_CURRENT_DESKTOP=sway
 
 # Start sway
-# dbus-run-session sway -Vd
-# dbus-launch
-sway -Vd
+sway -Vd --unsupported-gpu

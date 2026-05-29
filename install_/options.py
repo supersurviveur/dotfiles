@@ -27,7 +27,6 @@ class Options:
         self.custom_funcs: list[Callable] = []
 
         self.default = True
-        self.bootstrap = True
 
         try:
             with open(".env") as file:

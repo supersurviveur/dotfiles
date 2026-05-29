@@ -10,10 +10,16 @@ wait_waybar () {
 }
 
 # Per computer processus
-gammastep& # Blue light reducer
-kanata& # Multi layer keyboard on a classical one
+if command -v gammastep > /dev/null 2>&1; then
+    gammastep& # Blue light reducer
+fi
+if command -v kanata > /dev/null 2>&1; then
+    kanata& # Multi layer keyboard on a classical one
+fi
 bluetoothctl power off # power off bluetooth at startup
 
 # Start other processus
 wait_waybar
-keepassxc&
+if command -v keepassxc > /dev/null 2>&1; then
+    keepassxc&
+fi

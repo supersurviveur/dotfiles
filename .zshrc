@@ -68,9 +68,15 @@ bindkey '\e[1;5A' sudo-previous
 
 # alias
 alias sway="~/script/init-sway"
-alias ls="eza --icons auto"
-alias cd="z"
-alias cat="bat"
+if command -v eza > /dev/null 2>&1; then
+	alias ls="eza --icons auto"
+fi 
+if command -v z > /dev/null 2>&1; then
+	alias cd="z"
+fi 
+if command -v bat > /dev/null 2>&1; then
+	alias cat="bat"
+fi
 alias ap="~/script/ap.sh"
 hx () {
 	[[ $TERM == "alacritty" ]] && echo -n "\e]2;Helix - ${$(pwd)##*/}\007"
@@ -100,14 +106,10 @@ export EDITOR=hx
 
 export HELIX_RUNTIME=~/code/helix/runtime
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/.config/.zoxide
-
-# opam configuration
-[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-eval $(opam env)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 if [[ $TERM = "alacritty" ]]; then # Load modules only in alacritty, not in TTY
@@ -115,9 +117,10 @@ if [[ $TERM = "alacritty" ]]; then # Load modules only in alacritty, not in TTY
 	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fi
 
-eval "$(atuin init zsh)"
+if command -v atuin > /dev/null 2>&1; then
+	eval "$(atuin init zsh)"
+fi
 
-export PATH="$PATH:~/.local/share/coursier/bin"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/"
 
 # Vivado
