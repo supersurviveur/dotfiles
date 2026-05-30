@@ -30,6 +30,12 @@ set $bindsym bindsym
 # output DP-1 bg $(find ~/wallpaper/ -type f | shuf -n 1) fill
 output * bg $(find ~/wallpaper/ghibli -type f | shuf -n 1) fill
 exec ~/script/wallpapers.sh
+output HDMI-A-1 position 0 0 mode 1920x1080@74.973Hz
+output DP-1 position 1920 0 mode 1920x1080@74.973Hz
+workspace 1 output HDMI-A-1
+workspace 2 output DP-1
+workspace 1 output eDP-1
+
 #output * bg #000000 solid_color
 #
 # Example configuration:

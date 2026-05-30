@@ -71,9 +71,6 @@ alias sway="~/script/init-sway"
 if command -v eza > /dev/null 2>&1; then
 	alias ls="eza --icons auto"
 fi 
-if command -v z > /dev/null 2>&1; then
-	alias cd="z"
-fi 
 if command -v bat > /dev/null 2>&1; then
 	alias cat="bat"
 fi
@@ -106,10 +103,17 @@ export EDITOR=hx
 
 export HELIX_RUNTIME=~/code/helix/runtime
 
+if [ $HOST = "julien-pc-fixe" ]; then
+	export WLR_NO_HARDWARE_CURSORS=1
+fi 
+
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/.config/.zoxide
+if command -v z > /dev/null 2>&1; then
+	alias cd="z"
+fi 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 if [[ $TERM = "alacritty" ]]; then # Load modules only in alacritty, not in TTY

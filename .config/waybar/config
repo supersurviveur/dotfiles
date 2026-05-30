@@ -15,6 +15,7 @@
 		"bluetooth",
 		"custom/separator",
 		"temperature",
+		"custom/separator",
 		"battery",
 		"custom/separator",
 		"cpu",
@@ -43,10 +44,10 @@
 		"tooltip": false
 	},
 	"battery": {
-		"format": "BAT {capacity}% <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
-		"format-alt": "{time} <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
-		"format-charging": "CHR {capacity}% <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
-		"format-full": "FULL <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
+		"format": "BAT {capacity}%",
+		"format-alt": "{time}",
+		"format-charging": "CHR {capacity}%",
+		"format-full": "FULL",
 		"interval": 15,
 		"states": {
 			"good": 80,
@@ -121,6 +122,7 @@
 		"on-click": "process=$(pidof htop) ; if [[ -z $process ]]; then exec alacritty -T 'Alacritty - htop' -e htop& else swaymsg '[title=\"Alacritty - htop\"]' focus; fi"
 	},
 	"temperature": {
+		"hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
 		"interval": 10,
 		"format": "T: {temperatureC}°C",
 		"tooltip": false,
