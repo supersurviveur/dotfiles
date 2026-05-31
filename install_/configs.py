@@ -69,6 +69,3 @@ def install(
 def launch_install():
     for func in funcs:
         func()
-
-    for func in options.custom_funcs:
-        func()

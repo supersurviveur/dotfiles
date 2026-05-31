@@ -3,12 +3,9 @@
 import os
 
 from install_.configs import install, launch_install
-from install_.options import ask_yes_no
-from install_.utils import CONFIG_PATH, HOME, cpy, edit, remove, remove_line_after
+from install_.utils import CONFIG_PATH, HOME, cpy, edit
 
-@install(
-    "default"
-)
+
 def install_default():
     cpy(".config/sway", CONFIG_PATH + "sway")
     cpy(".config/atuin", CONFIG_PATH + "atuin")
@@ -57,6 +54,11 @@ def install_default():
         'sudo sed -i "s/keymap=\\".*\\"/keymap=\\"custom_ergol\\"/g" /etc/conf.d/keymaps'
     )
 
+    # Minegrub
+    os.system("sudo cp services/minegrub-update /etc/init.d/minegrub-update")
+    os.system("sudo chmod +x /etc/init.d/minegrub-update")
+    os.system("sudo rc-update add minegrub-update")
+
 
 @install(
     "rclone",
@@ -85,13 +87,6 @@ def install_rclone(rclone_client_id, rclone_client_secret, rclone_token):
     os.system("sudo rc-update add custom-rclone")
 
 
-@install("minegrub")
-def install_minegrub():
-    os.system("sudo cp services/minegrub-update /etc/init.d/minegrub-update")
-    os.system("sudo chmod +x /etc/init.d/minegrub-update")
-    os.system("sudo rc-update add minegrub-update")
-
-
 @install(
     "access_point",
     specific_options=(("ap_password", "Select an ap_password: "),),
@@ -102,6 +97,8 @@ def install_ap(ap_password):
 
 
 def main():
+    install_default()
     launch_install()
+
 
 main()
