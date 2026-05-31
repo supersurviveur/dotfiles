@@ -105,7 +105,9 @@ export HELIX_RUNTIME=~/code/helix/runtime
 
 if [ $HOST = "julien-pc-fixe" ]; then
 	export WLR_NO_HARDWARE_CURSORS=1
-fi 
+fi
+
+export PATH="$HOME/bin:$PATH"
 
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
