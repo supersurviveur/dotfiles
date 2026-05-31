@@ -66,6 +66,8 @@ bindkey '\e[1;5A' sudo-previous
 
 # End of lines configured by zsh-newuser-install
 
+export PATH="$HOME/bin:$PATH"
+
 # alias
 alias sway="~/script/init-sway"
 if command -v eza > /dev/null 2>&1; then
@@ -106,8 +108,6 @@ export HELIX_RUNTIME=~/code/helix/runtime
 if [ $HOST = "julien-pc-fixe" ]; then
 	export WLR_NO_HARDWARE_CURSORS=1
 fi
-
-export PATH="$HOME/bin:$PATH"
 
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
