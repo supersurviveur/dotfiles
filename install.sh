@@ -2,36 +2,49 @@
 
 CONFIG_PATH=$HOME/.config
 
-cp -r .config/sway $CONFIG_PATH/sway
-cp -r .config/atuin $CONFIG_PATH/atuin
-cp -r .config/zathura $CONFIG_PATH/zathura
-cp -r .config/.zoxide $CONFIG_PATH/.zoxide
-cp -r .config/gammastep $CONFIG_PATH/gammastep
-cp -r .config/kanata $CONFIG_PATH/kanata
-cp -r .config/helix $CONFIG_PATH/helix
-cp -r .config/alacritty.toml $CONFIG_PATH/alacritty.toml
-cp -r .config/waybar $CONFIG_PATH/waybar
-cp -r script/init $HOME/script/init
-cp -r script/init-sway $HOME/script/init-sway
-cp -r script/exit-sway $HOME/script/exit-sway
-cp -r script/dim_lum.sh $HOME/script/dim_lum.sh
-cp -r script/augment_lum.sh $HOME/script/augment_lum.sh
-cp -r script/getSwayCwd.sh $HOME/script/getSwayCwd.sh
-cp -r script/wallpapers.sh $HOME/script/wallpapers.sh
-cp -r script/eco.sh $HOME/script/eco.sh
-cp -r script/eco+.sh $HOME/script/eco+.sh
-cp -r script/export-esp.sh $HOME/script/export-esp.sh
-cp -r script/dmenu-run.sh $HOME/script/dmenu-run.sh
-cp -r wallpaper $HOME/wallpaper
+cp -r .config/sway $CONFIG_PATH
+cp -r .config/atuin $CONFIG_PATH
+cp -r .config/zathura $CONFIG_PATH
+cp -r .config/.zoxide $CONFIG_PATH
+cp -r .config/gammastep $CONFIG_PATH
+cp -r .config/kanata $CONFIG_PATH
+cp -r .config/helix $CONFIG_PATH
+cp -r .config/alacritty.toml $CONFIG_PATH
+cp -r .config/waybar $CONFIG_PATH
+cp -r .config/rclone $CONFIG_PATH
+
+# Rclone credentials
+sed -i "s/rclone_client_id/$(cat .env | jq .rclone_client_id -r)/g" $CONFIG_PATH/rclone/rclone.conf
+sed -i "s/rclone_client_secret/$(cat .env | jq .rclone_client_secret -r)/g" $CONFIG_PATH/rclone/rclone.conf
+sed -i "s/rclone_token/$(cat .env | jq .rclone_token -r | sed "s/\//\\\\\//g")/g" $CONFIG_PATH/rclone/rclone.conf
+
+mkdir $HOME/script -p
+cp -r script/init $HOME/script
+cp -r script/init-sway $HOME/script
+cp -r script/exit-sway $HOME/script
+cp -r script/dim_lum.sh $HOME/script
+cp -r script/augment_lum.sh $HOME/script
+cp -r script/getSwayCwd.sh $HOME/script
+cp -r script/wallpapers.sh $HOME/script
+cp -r script/eco.sh $HOME/script
+cp -r script/eco+.sh $HOME/script
+cp -r script/export-esp.sh $HOME/script
+cp -r script/dmenu-run.sh $HOME/script
+cp -r script/ap.sh $HOME/script
+
+# AP password
+sed -i "s/%AP_PASSWORD%/$(cat .env | jq .ap_password -r)/g" $HOME/script/ap.sh
+
+cp -r wallpaper $HOME
 
 mkdir $HOME/.logs -p
 
-cp -r .zsh $HOME/.zsh
-cp -r .zshrc $HOME/.zshrc
-cp -r .zshenv $HOME/.zshenv
-cp -r .zprofile $HOME/.zprofile
-cp -r .p10k.zsh $HOME/.p10k.zsh
+cp -r .zsh $HOME
+cp -r .zshrc $HOME
+cp -r .zshenv $HOME
+cp -r .zprofile $HOME
+cp -r .p10k.zsh $HOME
 
-cp -r .dprint.json $HOME/.dprint.json
+cp -r .dprint.json $HOME
 
-cp -r .ssh $HOME/.ssh
+cp -r .ssh $HOME
