@@ -101,17 +101,7 @@ def install_ap(ap_password):
     edit(HOME + "/script/ap.sh", lambda txt: txt.replace("%AP_PASSWORD%", ap_password))
 
 
-def post_install():
-    if "zsh" not in os.environ["SHELL"]:
-        os.system("chsh -s /")
-
-
 def main():
     launch_install()
-
-    post_install()
-    if ask_yes_no("Reboot now ?", False):
-        os.system("sudo reboot")
-
 
 main()

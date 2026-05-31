@@ -15,7 +15,7 @@
 		"bluetooth",
 		"custom/separator",
 		"temperature",
-		"custom/separator",
+		"custom/separator#battery",
 		"battery",
 		"custom/separator",
 		"cpu",
@@ -38,6 +38,11 @@
 		"format": "|",
 		"tooltip": false
 	},
+	"custom/separator#battery": {
+		"exec": "if [ -z \"$( ls -A '/sys/class/power_supply' )\" ]; then echo ''; else echo '|'; fi",
+		"interval": "once",
+		"tooltip": false
+	},
 	"clock": {
 		"interval": 5,
 		"format": "{:%d-%m-%Y %H:%M:%S}",
@@ -48,7 +53,7 @@
 		"format-alt": "{time}",
 		"format-charging": "CHR {capacity}%",
 		"format-full": "FULL",
-		"interval": 15,
+		"interval": 60,
 		"states": {
 			"good": 80,
 			"warning": 30,
@@ -84,7 +89,7 @@
 	},
 	"custom/spotify": {
 		"format": "{} <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
-		"interval": 10,
+		"interval": 15,
 		"return-type": "json",
 		"exec": "~/.config/waybar/modules/spotify.sh",
 		"exec-if": "pgrep spotify",
@@ -93,14 +98,14 @@
 	},
 	"custom/vpn": {
 		"format": " <span fgcolor='#f38d70'> {}</span> <span fgcolor='#d9d8d880' font_weight='bold'>|</span>",
-		"interval": 30,
+		"interval": 60,
 		"return-type": "json",
 		"exec": "~/.config/waybar/modules/vpn.sh",
 		"exec-if": "pgrep openvpn || pgrep openconnect",
 		"escape": true
 	},
 	"disk": {
-		"interval": 30,
+		"interval": 60,
 		"tooltip": false,
 		"format": "{free}",
 		"path": "/"
