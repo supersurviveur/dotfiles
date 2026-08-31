@@ -8,4 +8,6 @@ if pstree -s $$ | grep -q 'login'; then
   eval `ssh-agent` > /dev/null
 fi
 
+openrc --user default
+
 fastfetch
